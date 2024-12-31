@@ -1,6 +1,6 @@
 # VillagerUnknown's Babel Fish
 
-Adds a fish whose existence challenges the existence of God.
+Adds a fish that, when consumed live, provides translations and world hints to the player.
 
 **Features:**
 
@@ -9,14 +9,21 @@ Adds a fish whose existence challenges the existence of God.
 
 **Babel Fish**
 
-The Babel Fish can talk to players and, if consumed live, can provide translations for other species to the player.
+The Babel Fish can talk to players and, when consumed live, can provide translations for other species to the player.
 
 **Structure Hints**
 
 If a Babel Fish is providing translations to the player, certain mobs might provide hints to structure locations in the world.
+
+While more are planned in the future, this is currently only supported by:
+* Villagers
 
 ## Support
 
 * Get support and share feedback at https://discord.gg/PXjXh6M38H
 * Request features and report bugs at https://github.com/VillagerUnknown/BabelFish/issues
 * View the changelog at https://github.com/VillagerUnknown/BabelFish/blob/main/CHANGELOG.md
+
+**Known Issues**
+
+* Performance can be impacted by this mod as it frequently uses code similar to the `/locate` command for structure hints.
