@@ -192,11 +192,15 @@ public class babelFishTranslationsFeature {
 	}
 	
 	public static String addPrefix( String message, Entity entity ) {
+		String name;
+		
 		if( entity.hasCustomName() ) {
-			message = entity.getCustomName().getString() + ": " + message;
+			name = entity.getCustomName().getString();
 		} else {
-			message = StringUtil.capitalizeAll( entity.getType().getUntranslatedName().replace( "_", " " ) ) + ": " + message;
+			name = StringUtil.capitalizeAll( entity.getType().getUntranslatedName().replace( "_", " " ) );
 		}
+		
+		message = "<" + name + "> " + message;
 		
 		return message;
 	}
@@ -222,21 +226,6 @@ public class babelFishTranslationsFeature {
 		} // if, else
 		
 		return message;
-	}
-	
-	public static void sendMessage( ServerPlayerEntity player, Entity entity, String message ) {
-		if( !canSendMessage( player.getWorld(), message ) ) {
-			return;
-		} // if
-		
-		lastMessageSent = message;
-		
-		message = addPunctuation( message );
-		message = addPrefix( message, entity );
-		
-		timeMessageSent = player.getWorld().getTime();
-		
-		MessageUtil.sendChatMessage( player, message );
 	}
 	
 	public static void sendMessage( PlayerEntity player, Entity entity, String message ) {
