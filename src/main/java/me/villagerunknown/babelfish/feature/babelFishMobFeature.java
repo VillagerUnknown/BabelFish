@@ -5,25 +5,12 @@ import me.villagerunknown.babelfish.entity.BabelFishEntity;
 import me.villagerunknown.babelfish.item.BabelFishBucketItem;
 import me.villagerunknown.babelfish.item.BabelFishItem;
 import me.villagerunknown.platform.util.RegistryUtil;
-import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.Blocks;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
 
 public class babelFishMobFeature {
 	
@@ -40,7 +27,6 @@ public class babelFishMobFeature {
 	public static void execute() {
 		registerEntity();
 		registerItems();
-//		registerEvents();
 	}
 	
 	private static void registerItems() {
@@ -78,23 +64,6 @@ public class babelFishMobFeature {
 		
 		RegistryUtil.registerEntity( BABEL_FISH_STRING, BABEL_FISH_ENTITY_TYPE, Babelfish.MOD_ID );
 		FabricDefaultAttributeRegistry.register( BABEL_FISH_ENTITY_TYPE, BabelFishEntity.createBabelFishAttributes() );
-	}
-
-	private static void registerEvents() {
-		UseItemCallback.EVENT.register(new UseItemCallback() {
-			@Override
-			public TypedActionResult<ItemStack> interact(PlayerEntity playerEntity, World world, Hand hand) {
-				ItemStack stack = playerEntity.getStackInHand( hand );
-				
-				if( stack.getItem().equals( BABEL_FISH_BUCKET_ITEM ) ) {
-					Item item = stack.getItem();
-					
-					
-				} // if
-				
-				return null;
-			}
-		});
 	}
 	
 }
