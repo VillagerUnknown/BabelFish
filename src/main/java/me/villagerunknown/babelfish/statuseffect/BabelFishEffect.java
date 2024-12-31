@@ -2,6 +2,7 @@ package me.villagerunknown.babelfish.statuseffect;
 
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
+import me.villagerunknown.platform.util.EntityUtil;
 import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.ToastUtil;
@@ -10,13 +11,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class BabelFishEffect extends StatusEffect {
 	
@@ -38,6 +38,7 @@ public class BabelFishEffect extends StatusEffect {
 		super.onApplied(entity, amplifier);
 		
 		if( entity instanceof ServerPlayerEntity serverPlayerEntity ) {
+			EntityUtil.addStatusEffect( serverPlayerEntity, StatusEffects.NAUSEA, 120, 0, true, true, true);
 			sendMessage( serverPlayerEntity, formMessageWithPrefix( babelFishStatusEffectFeature.MESSAGES_GREETINGS.get(rand.nextInt(babelFishStatusEffectFeature.MESSAGES_GREETINGS.size())) ) );
 		} // if
 	}

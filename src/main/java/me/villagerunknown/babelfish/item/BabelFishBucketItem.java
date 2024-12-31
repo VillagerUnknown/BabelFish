@@ -43,7 +43,6 @@ public class BabelFishBucketItem extends EntityBucketItem {
 			serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
 
 			if (!world.isClient) {
-				EntityUtil.addStatusEffect( user, StatusEffects.POISON, 120, 0, true, true, true);
 				babelFishStatusEffectFeature.applyEffect((ServerPlayerEntity) user);
 			} // if
 		} // if
