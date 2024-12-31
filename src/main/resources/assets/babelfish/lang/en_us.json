@@ -4,18 +4,19 @@
 
   "text.autoconfig.villagerunknown-babelfish.category.General": "General",
 
-  "text.autoconfig.villagerunknown-babelfish.option.babelFishHearingRadius": "Babel Fish Hearing Radius",
-  "text.autoconfig.villagerunknown-babelfish.option.gossipSearchRadius": "Gossip Search Radius",
+  "text.autoconfig.villagerunknown-babelfish.option.babelFishTranslationRadius": "Babel Fish Translation Radius",
+  "text.autoconfig.villagerunknown-babelfish.option.worldHintSearchRadius": "World Hint Search Radius",
 
   "text.autoconfig.villagerunknown-babelfish.category.Chat": "Chat",
 
-  "text.autoconfig.villagerunknown-babelfish.option.messageFrequency": "Message Frequency",
+  "text.autoconfig.villagerunknown-babelfish.option.translationChatMessageFrequency": "Translation Chat Message Frequency",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForBabelFishChatter": "Chance for Babel Fish Chatter",
-  "text.autoconfig.villagerunknown-babelfish.option.chanceForGossip": "Chance for Gossip",
+  "text.autoconfig.villagerunknown-babelfish.option.chanceForWorldHint": "Chance for World Hint",
 
-  "effect.villagerunknown-babelfish.babel_fish": "Babel Fish",
+  "effect.villagerunknown-babelfish.babel_fish": "Babel Fish Translator",
 
   "item.villagerunknown-babelfish.babel_fish": "Babel Fish",
   "item.villagerunknown-babelfish.babel_fish_spawn_egg": "Babel Fish Spawn Egg",
   "item.villagerunknown-babelfish.babel_fish_bucket": "Bucket of Babel Fish"
+
 }
