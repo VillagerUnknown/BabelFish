@@ -14,7 +14,7 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	public int babelFishHearingRadius = 16;
 	
 	@ConfigEntry.Category("General")
-	public int gossipSearchRadius = 10;
+	public int gossipSearchRadius = 1;
 	
 	/**
 	 * Chat
