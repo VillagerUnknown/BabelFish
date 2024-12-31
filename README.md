@@ -15,7 +15,7 @@ The Babel Fish can talk to players and, when consumed from a bucket, can provide
 
 If a Babel Fish is providing translations to the player, certain mobs might provide hints to structure locations in the world.
 
-While more are planned in the future, this is currently only supported by:
+While more support is planned for the future, this is currently only supported by:
 * Villagers
 
 ## Support
