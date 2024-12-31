@@ -9,10 +9,7 @@ import me.villagerunknown.platform.util.StringUtil;
 import me.villagerunknown.platform.util.WorldUtil;
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -156,7 +153,7 @@ public class babelFishTranslationsFeature {
 	
 	public static void registerEvents() {
 		EntityTrackingEvents.START_TRACKING.register((entity, serverPlayerEntity) -> {
-			if( entity instanceof ItemEntity) {
+			if( !( entity instanceof LivingEntity ) ) {
 				return;
 			}
 			
@@ -166,7 +163,7 @@ public class babelFishTranslationsFeature {
 		});
 		
 		EntityTrackingEvents.STOP_TRACKING.register((entity, serverPlayerEntity) -> {
-			if( entity instanceof ItemEntity) {
+			if( !( entity instanceof LivingEntity ) ) {
 				return;
 			}
 			
