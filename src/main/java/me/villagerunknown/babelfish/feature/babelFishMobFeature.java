@@ -5,12 +5,15 @@ import me.villagerunknown.babelfish.entity.BabelFishEntity;
 import me.villagerunknown.babelfish.item.BabelFishBucketItem;
 import me.villagerunknown.babelfish.item.BabelFishItem;
 import me.villagerunknown.platform.util.RegistryUtil;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.BiomeKeys;
 
 public class babelFishMobFeature {
 	
@@ -64,6 +67,15 @@ public class babelFishMobFeature {
 		
 		RegistryUtil.registerEntity( BABEL_FISH_STRING, BABEL_FISH_ENTITY_TYPE, Babelfish.MOD_ID );
 		FabricDefaultAttributeRegistry.register( BABEL_FISH_ENTITY_TYPE, BabelFishEntity.createBabelFishAttributes() );
+		
+		registerEntitySpawns();
+	}
+	
+	private static void registerEntitySpawns() {
+		BiomeModifications.addSpawn( BiomeSelectors.includeByKey( BiomeKeys.RIVER ), SpawnGroup.WATER_CREATURE, BABEL_FISH_ENTITY_TYPE, 1, 1, 1 );
+		BiomeModifications.addSpawn( BiomeSelectors.includeByKey( BiomeKeys.OCEAN, BiomeKeys.DEEP_OCEAN, BiomeKeys.DEEP_LUKEWARM_OCEAN, BiomeKeys.WARM_OCEAN ), SpawnGroup.WATER_CREATURE, BABEL_FISH_ENTITY_TYPE, 5, 1, 1 );
+		
+		SpawnRestriction.register( BABEL_FISH_ENTITY_TYPE, SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BabelFishEntity::canSpawn );
 	}
 	
 }
