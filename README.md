@@ -11,6 +11,8 @@ Adds a fish that, when consumed from a bucket, provides translations and world h
 
 The Babel Fish can talk to players and, when consumed from a bucket, can provide translations for other species to the player.
 
+Babel Fish have a small chance to spawn in Rivers and a slightly higher chance to spawn in variations of the Warm Ocean.
+
 **Structure Hints**
 
 If a Babel Fish is providing translations to the player, certain mobs might provide hints to structure locations in the world.
