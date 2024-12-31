@@ -1,5 +1,6 @@
 package me.villagerunknown.babelfish.feature;
 
+import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.provider.TranslationProvider;
@@ -11,22 +12,26 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.registry.entry.RegistryEntryOwner;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.structure.Structure;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class babelFishTranslationsFeature {
 	
@@ -344,42 +349,6 @@ public class babelFishTranslationsFeature {
 		} // switch
 		
 		return message;
-	}
-	
-	public static Pair<BlockPos, RegistryEntry<Structure>> locateStructure( ServerWorld serverWorld, BlockPos blockPos, RegistryKey<Structure> registryKey ) {
-		Registry<Structure> registry = serverWorld.getRegistryManager().get(RegistryKeys.STRUCTURE);
-		
-		Optional<RegistryEntry.Reference<Structure>> structure = registry.getEntry( registryKey );
-		
-		if( structure.isPresent() ) {
-			RegistryEntryList<Structure> registryEntryList = RegistryEntryList.of(structure.get());
-			
-			Pair<BlockPos, RegistryEntry<Structure>> pair = serverWorld.getChunkManager().getChunkGenerator().locateStructure(serverWorld, registryEntryList, blockPos, Babelfish.CONFIG.gossipSearchRadius, false);
-			
-			if( null != pair ) {
-				return pair;
-			} // if
-		}
-		
-		return null;
-	}
-	
-	public static Pair<BlockPos, RegistryEntry<Biome>> locateBiome( ServerWorld serverWorld, BlockPos blockPos, RegistryKey<Biome> registryKey  ) {
-		Registry<Biome> registry = serverWorld.getRegistryManager().get(RegistryKeys.BIOME);
-		
-		Optional<RegistryEntry.Reference<Biome>> biome = registry.getEntry( registryKey );
-		
-//		if( biome.isPresent() ) {
-//			RegistryEntryList<Biome> registryEntryList = RegistryEntryList.of(biome.get());
-//
-//			Pair<BlockPos, RegistryEntry<Biome>> pair = serverWorld.getChunkManager().getChunkGenerator().getBiomeSource().locateBiome(serverWorld, registryEntryList, blockPos, Babelfish.CONFIG.gossipSearchRadius, false);
-//
-//			if( null != pair ) {
-//				return pair;
-//			} // if
-//		}
-		
-		return null;
 	}
 	
 }
