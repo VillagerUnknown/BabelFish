@@ -2,12 +2,10 @@ package me.villagerunknown.babelfish.provider;
 
 import com.mojang.datafixers.util.Pair;
 import me.villagerunknown.babelfish.Babelfish;
-import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
 import me.villagerunknown.babelfish.locator.Locator;
 import me.villagerunknown.babelfish.translator.AbstractTranslator;
 import me.villagerunknown.babelfish.translator.StructureTranslator;
 import me.villagerunknown.platform.util.MathUtil;
-import me.villagerunknown.platform.util.WorldUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +21,7 @@ public class TranslationProvider {
 	public static String translate(AbstractTranslator translator, PlayerEntity player ) {
 		String message = "";
 		
-		if( MathUtil.hasChance( Babelfish.CONFIG.chanceForGossip ) ) {
+		if( MathUtil.hasChance( Babelfish.CONFIG.chanceForWorldHint) ) {
 			if( !translator.BIOMES.isEmpty() ) {
 				Pair<BlockPos, RegistryEntry<Biome>> pair = Locator.locateBiome(player, translator.BIOMES.get(rand.nextInt(translator.BIOMES.size())));
 				if (null != pair) {

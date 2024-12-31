@@ -5,10 +5,8 @@ import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
 import me.villagerunknown.platform.util.EntityUtil;
 import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
-import me.villagerunknown.platform.util.ToastUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
@@ -78,7 +76,7 @@ public class BabelFishEffect extends StatusEffect {
 	}
 	
 	public boolean canSendMessage( World world ) {
-		return ( world.getTime() - Babelfish.CONFIG.messageFrequency >= timeMessageSent );
+		return ( world.getTime() - Babelfish.CONFIG.translationChatMessageFrequency >= timeMessageSent );
 	}
 	
 	public void sendMessage( ServerPlayerEntity serverPlayerEntity, String message ) {

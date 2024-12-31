@@ -31,7 +31,7 @@ public class VillagerEntityMixin {
 //			ci.cancel();
 //		} // if
 //
-//		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(world), villager.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+//		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(world), villager.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 //		if( !players.isEmpty() ) {
 //			for (ServerPlayerEntity player : players) {
 //				if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
@@ -49,7 +49,7 @@ public class VillagerEntityMixin {
 			ci.cancel();
 		} // if
 		
-		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 		if( !players.isEmpty() ) {
 			for (ServerPlayerEntity player : players) {
 				if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
@@ -67,7 +67,7 @@ public class VillagerEntityMixin {
 			ci.cancel();
 		} // if
 		
-		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 		if( !players.isEmpty() ) {
 			for (ServerPlayerEntity player : players) {
 				if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
@@ -85,7 +85,7 @@ public class VillagerEntityMixin {
 			ci.cancel();
 		} // if
 		
-		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 		if( !players.isEmpty() ) {
 			for (ServerPlayerEntity player : players) {
 				if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
@@ -103,7 +103,7 @@ public class VillagerEntityMixin {
 			ci.cancel();
 		} // if
 		
-		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 		if( !players.isEmpty() ) {
 			for (ServerPlayerEntity player : players) {
 				if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
@@ -121,7 +121,7 @@ public class VillagerEntityMixin {
 			ci.cancel();
 		} // if
 		
-		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+		List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 		if( !players.isEmpty() ) {
 			for (ServerPlayerEntity player : players) {
 				if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {

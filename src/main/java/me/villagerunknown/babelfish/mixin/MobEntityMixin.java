@@ -27,7 +27,7 @@ public class MobEntityMixin {
 		} // if
 		
 		if( null != entity.getServer() ) {
-			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getEntityWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getEntityWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 			if (!players.isEmpty()) {
 				for (ServerPlayerEntity player : players) {
 					if (player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY)) {

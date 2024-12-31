@@ -9,14 +9,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.Structure;
-
-import java.util.Optional;
 
 public class Locator {
 	
@@ -25,7 +21,7 @@ public class Locator {
 	}
 	
 	public static Pair<BlockPos, RegistryEntry<Structure>> locateStructure(ServerWorld serverWorld, BlockPos blockPos, RegistryKey<Structure> registryKey ) {
-		return LocatorUtil.locateStructure( serverWorld, blockPos, registryKey, Babelfish.CONFIG.gossipSearchRadius );
+		return LocatorUtil.locateStructure( serverWorld, blockPos, registryKey, Babelfish.CONFIG.worldHintSearchRadius);
 	}
 	
 	public static Pair<BlockPos, RegistryEntry<Biome>> locateBiome( PlayerEntity player, RegistryKey<Biome> registryKey ) {
@@ -42,7 +38,7 @@ public class Locator {
 	}
 	
 	public static Pair<BlockPos, RegistryEntry<Biome>> locateBiome(ServerWorld serverWorld, BlockPos blockPos, RegistryKey<Biome> registryKey  ) {
-		return LocatorUtil.locateBiome( serverWorld, blockPos, registryKey, Babelfish.CONFIG.gossipSearchRadius * 64, 32, 64 );
+		return LocatorUtil.locateBiome( serverWorld, blockPos, registryKey, Babelfish.CONFIG.worldHintSearchRadius * 64, 32, 64 );
 	}
 	
 }

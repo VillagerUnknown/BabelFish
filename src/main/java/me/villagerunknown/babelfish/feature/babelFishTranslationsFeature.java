@@ -1,7 +1,5 @@
 package me.villagerunknown.babelfish.feature;
 
-import com.mojang.datafixers.util.Either;
-import com.mojang.datafixers.util.Pair;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.provider.TranslationProvider;
 import me.villagerunknown.babelfish.translator.*;
@@ -12,26 +10,10 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.entry.RegistryEntryOwner;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import net.minecraft.world.gen.structure.Structure;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class babelFishTranslationsFeature {
 	
@@ -162,7 +144,7 @@ public class babelFishTranslationsFeature {
 				return;
 			}
 			
-			if( entity.squaredDistanceTo( serverPlayerEntity ) <= Babelfish.CONFIG.babelFishHearingRadius && serverPlayerEntity.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
+			if( entity.squaredDistanceTo( serverPlayerEntity ) <= Babelfish.CONFIG.babelFishTranslationRadius && serverPlayerEntity.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
 				babelFishTranslationsFeature.sendTranslation( serverPlayerEntity, entity, "trackStart" );
 			} // if
 		});
@@ -172,7 +154,7 @@ public class babelFishTranslationsFeature {
 				return;
 			}
 			
-			if( entity.squaredDistanceTo( serverPlayerEntity ) <= Babelfish.CONFIG.babelFishHearingRadius && serverPlayerEntity.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
+			if( entity.squaredDistanceTo( serverPlayerEntity ) <= Babelfish.CONFIG.babelFishTranslationRadius && serverPlayerEntity.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
 				babelFishTranslationsFeature.sendTranslation( serverPlayerEntity, entity, "trackStop" );
 			} // if
 		});
@@ -186,7 +168,7 @@ public class babelFishTranslationsFeature {
 				return;
 			} // if
 			
-			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(serverWorld, entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishHearingRadius), ServerPlayerEntity.class);
+			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(serverWorld, entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
 			if( !players.isEmpty() ) {
 				for (ServerPlayerEntity player : players) {
 					if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
@@ -202,7 +184,7 @@ public class babelFishTranslationsFeature {
 	}
 	
 	public static boolean timeToSendMessage( World world ) {
-		return ( world.getTime() - Babelfish.CONFIG.messageFrequency >= timeMessageSent );
+		return ( world.getTime() - Babelfish.CONFIG.translationChatMessageFrequency >= timeMessageSent );
 	}
 	
 	public static boolean notSameMessage( String message ) {
