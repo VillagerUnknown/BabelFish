@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "villagerunknown-babelfish",
+  "version": "${version}",
+  "name": "VillagerUnknown's Babel Fish",
+  "description": "Adds a fish whose existence challenges the existence of God. You're welcome.",
+  "authors": ["VillagerUnknown"],
+  "contact": {
+    "homepage":"https://discord.gg/PXjXh6M38H"
+  },
+  "license": "CC-BY-4.0",
+  "icon": "assets/babelfish/villagerunknown-babel-fish.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "me.villagerunknown.babelfish.client.BabelfishClient"
+    ],
+    "main": [
+      "me.villagerunknown.babelfish.Babelfish"
+    ],
+    "modmenu": [
+      "me.villagerunknown.babelfish.client.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "babelfish.mixins.json",
+    {
+      "config": "babelfish.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "villagerunknown-platform": ">=1.1.1"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/PXjXh6M38H"
+      }
+    }
+  }
+}
