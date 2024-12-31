@@ -1,6 +1,6 @@
 # VillagerUnknown's Babel Fish
 
-Adds a fish that, when consumed live, provides translations and world hints to the player.
+Adds a fish that, when consumed from a bucket, provides translations and world hints to the player.
 
 **Features:**
 
@@ -9,7 +9,7 @@ Adds a fish that, when consumed live, provides translations and world hints to t
 
 **Babel Fish**
 
-The Babel Fish can talk to players and, when consumed live, can provide translations for other species to the player.
+The Babel Fish can talk to players and, when consumed from a bucket, can provide translations for other species to the player.
 
 **Structure Hints**
 
