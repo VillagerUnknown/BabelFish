@@ -4,24 +4,31 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.structure.Structure;
+import net.minecraft.world.gen.structure.StructureKeys;
 
 import java.util.List;
 
-public class BeeTranslator extends PassiveTranslator {
+public class EndermanTranslator extends HostileTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
-			"Must get pollen",
-			"Must produce honey",
-			"Must satisfy the Queen"
+			"I'm bored",
+			"Let's play",
+			"Can I have that block",
+			"Are you using that block"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of(
-			BiomeKeys.FLOWER_FOREST
+			BiomeKeys.DEEP_DARK
 	);
 	
-	public static List<RegistryKey<Structure>> STRUCTURES = List.of();
+	public static List<RegistryKey<Structure>> STRUCTURES = List.of(
+			StructureKeys.RUINED_PORTAL,
+			StructureKeys.ANCIENT_CITY,
+			StructureKeys.STRONGHOLD,
+			StructureKeys.END_CITY
+	);
 	
-	public BeeTranslator() {
+	public EndermanTranslator() {
 		super(
 				BIOMES,
 				STRUCTURES,

@@ -4,40 +4,30 @@ import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
 import me.villagerunknown.platform.util.ListUtil;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.structure.Structure;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class AmbientTranslator extends AbstractTranslator {
+public class HostileTranslator extends AmbientTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
-			"What's this",
-			"What's that",
-			"What's this over here",
-			"What's that over there",
-			"What's that do",
-			"Where's that from",
-			"How did that get there",
-			"I feel like exploring",
-			"I wish I could explore",
-			"Where should I go next",
-			"What should I do next",
-			"I'm bored",
-			"I'm tired",
-			"I'm sleepy",
-			"I'm excited",
-			"I'm waiting",
-			"I could go for a snack",
-			"I'm getting tired",
-			"Why is it so quiet"
+			"I hate it here",
+			"Everything looks the same around here",
+			"I don't like this place",
+			"This doesn't look good",
+			"That doesn't look good",
+			"It's too peaceful",
+			"It's too peaceful here",
+			"I can't wait to burn everything down",
+			"I just want to set the world on fire"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of();
 	
-	public AmbientTranslator() {
+	public HostileTranslator() {
 		super(
 				BIOMES,
 				STRUCTURES,
@@ -45,7 +35,7 @@ public class AmbientTranslator extends AbstractTranslator {
 		);
 	}
 	
-	public AmbientTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
+	public HostileTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
 		super(
 				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
 				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),

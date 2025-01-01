@@ -6,38 +6,31 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.Structure;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class AmbientTranslator extends AbstractTranslator {
+public class PassiveTranslator extends AmbientTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
-			"What's this",
-			"What's that",
-			"What's this over here",
-			"What's that over there",
-			"What's that do",
-			"Where's that from",
-			"How did that get there",
-			"I feel like exploring",
-			"I wish I could explore",
-			"Where should I go next",
-			"What should I do next",
-			"I'm bored",
-			"I'm tired",
-			"I'm sleepy",
-			"I'm excited",
-			"I'm waiting",
-			"I could go for a snack",
-			"I'm getting tired",
-			"Why is it so quiet"
+			"It's such a lovely day",
+			"I hope nothing bad happens today",
+			"Nothing looks the same around here anymore",
+			"I like this place",
+			"I feel uneasy",
+			"I feel rested",
+			"I feel calm",
+			"I feel happy",
+			"This looks good",
+			"That looks good",
+			"It's quiet, too quiet",
+			"It's so peaceful",
+			"I have a bad feeling about this"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of();
 	
-	public AmbientTranslator() {
+	public PassiveTranslator() {
 		super(
 				BIOMES,
 				STRUCTURES,
@@ -45,7 +38,7 @@ public class AmbientTranslator extends AbstractTranslator {
 		);
 	}
 	
-	public AmbientTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
+	public PassiveTranslator(List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
 		super(
 				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
 				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),

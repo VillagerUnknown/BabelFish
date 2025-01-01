@@ -7,28 +7,25 @@ import net.minecraft.world.gen.structure.StructureKeys;
 
 import java.util.List;
 
-public class PillagerTranslator extends HostileTranslator {
+public class CreeperTranslator extends HostileTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
-			"I don't like those villagers",
-			"I don't like all villagers",
-			"Does anyone want to go pillage a village",
-			"Who is ready to pillage"
+			"I'm being sneaky",
+			"They'll never see me coming",
+			"I'm like a ninja",
+			"Dun. Dun. Dun nu. Dun. Dun. Dun nu",
+			"I am one with the grass",
+			"I am one with the moss",
+			"I am one with the leaves"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of(
-			StructureKeys.MANSION,
-			StructureKeys.PILLAGER_OUTPOST,
-			StructureKeys.VILLAGE_DESERT,
-			StructureKeys.VILLAGE_PLAINS,
-			StructureKeys.VILLAGE_SAVANNA,
-			StructureKeys.VILLAGE_SNOWY,
-			StructureKeys.VILLAGE_TAIGA
+			StructureKeys.DESERT_PYRAMID
 	);
 	
-	public PillagerTranslator() {
+	public CreeperTranslator() {
 		super(
 				BIOMES,
 				STRUCTURES,

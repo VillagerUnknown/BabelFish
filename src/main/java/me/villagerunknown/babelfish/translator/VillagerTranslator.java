@@ -7,7 +7,7 @@ import net.minecraft.world.gen.structure.StructureKeys;
 
 import java.util.List;
 
-public class VillagerTranslator extends AbstractTranslator {
+public class VillagerTranslator extends PassiveTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"Is it going to rain",
@@ -26,21 +26,25 @@ public class VillagerTranslator extends AbstractTranslator {
 			"Have you eaten yet",
 			"I'm thirsty",
 			"I need water",
-			"Do we have any water"
+			"Do we have any water",
+			"Do we have any bread",
+			"Does anyone have bread",
+			"Does anyone want bread",
+			"Does anyone have a carrot",
+			"Does anyone want a carrot",
+			"Does anyone have a potato",
+			"Does anyone want a potato",
+			"Does anyone have a beetroot",
+			"Does anyone want a beetroot",
+			"Where is my bed"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of(
-			StructureKeys.MINESHAFT,
-			StructureKeys.MINESHAFT_MESA,
-			StructureKeys.ANCIENT_CITY,
-			StructureKeys.DESERT_PYRAMID,
 			StructureKeys.MANSION,
 			StructureKeys.JUNGLE_PYRAMID,
-			StructureKeys.MONUMENT,
 			StructureKeys.PILLAGER_OUTPOST,
-			StructureKeys.SHIPWRECK_BEACHED,
 			StructureKeys.TRAIL_RUINS,
 			StructureKeys.TRIAL_CHAMBERS,
 			StructureKeys.SWAMP_HUT,
@@ -48,15 +52,14 @@ public class VillagerTranslator extends AbstractTranslator {
 			StructureKeys.VILLAGE_PLAINS,
 			StructureKeys.VILLAGE_SAVANNA,
 			StructureKeys.VILLAGE_SNOWY,
-			StructureKeys.VILLAGE_TAIGA,
-			StructureKeys.STRONGHOLD
+			StructureKeys.VILLAGE_TAIGA
 	);
 	
 	public VillagerTranslator() {
 		super(
-				TRANSLATION_COMMON,
 				BIOMES,
-				STRUCTURES
+				STRUCTURES,
+				TRANSLATION_COMMON
 		);
 	}
 

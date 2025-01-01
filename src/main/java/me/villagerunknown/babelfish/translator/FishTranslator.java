@@ -10,26 +10,35 @@ import net.minecraft.world.gen.structure.StructureKeys;
 
 import java.util.List;
 
-public class PiglinTranslator extends HostileTranslator {
+public class FishTranslator extends PassiveTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
-			"I can't wait to listen to Pigstep again",
-			"Is that gold",
-			"Is that food"
+			"Just keep swimming"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of(
-			BiomeKeys.CRIMSON_FOREST,
-			BiomeKeys.WARPED_FOREST
+			BiomeKeys.OCEAN,
+			BiomeKeys.WARM_OCEAN,
+			BiomeKeys.COLD_OCEAN,
+			BiomeKeys.DEEP_COLD_OCEAN,
+			BiomeKeys.DEEP_OCEAN,
+			BiomeKeys.FROZEN_OCEAN,
+			BiomeKeys.LUKEWARM_OCEAN,
+			BiomeKeys.DEEP_FROZEN_OCEAN,
+			BiomeKeys.DEEP_LUKEWARM_OCEAN,
+			BiomeKeys.RIVER,
+			BiomeKeys.FROZEN_RIVER
 	);
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of(
-			StructureKeys.NETHER_FOSSIL,
-			StructureKeys.BASTION_REMNANT,
-			StructureKeys.FORTRESS
+			StructureKeys.MONUMENT,
+			StructureKeys.SHIPWRECK,
+			StructureKeys.OCEAN_RUIN_WARM,
+			StructureKeys.OCEAN_RUIN_COLD,
+			StructureKeys.RUINED_PORTAL_OCEAN
 	);
 	
-	public PiglinTranslator() {
+	public FishTranslator() {
 		super(
 				BIOMES,
 				STRUCTURES,
@@ -37,7 +46,7 @@ public class PiglinTranslator extends HostileTranslator {
 		);
 	}
 	
-	public PiglinTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
+	public FishTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
 		super(
 				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
 				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),
