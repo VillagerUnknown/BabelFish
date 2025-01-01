@@ -1,11 +1,8 @@
 package me.villagerunknown.babelfish.feature;
 
 import me.villagerunknown.babelfish.Babelfish;
-import me.villagerunknown.babelfish.statuseffect.BabelFishEffect;
+import me.villagerunknown.babelfish.statuseffect.BabelFishStatusEffect;
 import me.villagerunknown.platform.util.EntityUtil;
-import me.villagerunknown.platform.util.MathUtil;
-import me.villagerunknown.platform.util.MessageUtil;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -13,13 +10,11 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-import java.util.List;
-
 public class babelFishStatusEffectFeature {
 	
 	public static String DEFAULT_BABEL_FISH_NAME = "Babel Fish Translator";
 	
-	public static final StatusEffect BABEL_FISH_EFFECT = new BabelFishEffect();
+	public static final StatusEffect BABEL_FISH_EFFECT = new BabelFishStatusEffect();
 	public static RegistryEntry<StatusEffect> BABEL_FISH_EFFECT_REGISTRY;
 	
 	public static void execute() {
