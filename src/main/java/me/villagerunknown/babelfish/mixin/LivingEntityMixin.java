@@ -4,30 +4,18 @@ import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
 import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
 import me.villagerunknown.platform.util.MathUtil;
-import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.WorldUtil;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -35,7 +23,7 @@ import java.util.List;
 public class LivingEntityMixin {
 	
 	@Unique
-	private void handleCallbackInfo( CallbackInfo ci, String context ) {
+	private void handleCallbackInfo( CallbackInfo ci, String context, boolean forced ) {
 		Entity entity = (Entity) (Object) this;
 		
 		if( !entity.isAlive() || entity.isPlayer() || entity.getWorld().isClient() ) {
@@ -48,7 +36,13 @@ public class LivingEntityMixin {
 				for (ServerPlayerEntity player : players) {
 					if (player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY)) {
 						List<LivingEntity> entities = WorldUtil.getEntitiesByType(player.getServerWorld(), player.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), LivingEntity.class);
-						if(MathUtil.hasChance( (float) 100 / entities.size() ) ) {
+						double chance = 1 - (entities.size() * Babelfish.CONFIG.translationChatMessageEntityReductionFactor);
+						
+						if( chance < Babelfish.CONFIG.translationChatMessageMinimumChance ) {
+							chance = Babelfish.CONFIG.translationChatMessageMinimumChance;
+						} // if
+						
+						if( forced || 1 == entities.size() || MathUtil.hasChance((float) chance) ) {
 							babelFishTranslationsFeature.sendTranslation(player, entity, context);
 						} // if
 					} // if
@@ -93,7 +87,7 @@ public class LivingEntityMixin {
 				case "screech":
 				case "squish":
 				case "squish_small":
-					handleCallbackInfo( ci, "talk" );
+					handleCallbackInfo( ci, "talk", false );
 					break;
 				case "attack":
 				case "sting":
@@ -108,17 +102,17 @@ public class LivingEntityMixin {
 				case "prepare_attack":
 				case "prepare_summon":
 				case "prepare_wololo":
-					handleCallbackInfo( ci, "attack" );
+					handleCallbackInfo( ci, "attack", false );
 					break;
 				case "attack_wooden_door":
 				case "attack_iron_door":
-					handleCallbackInfo( ci, "attackDoor" );
+					handleCallbackInfo( ci, "attackDoor", false );
 					break;
 				case "break_wooden_door":
-					handleCallbackInfo( ci, "breakDoor" );
+					handleCallbackInfo( ci, "breakDoor", false );
 					break;
 				case "destroy_egg":
-					handleCallbackInfo( ci, "destroy" );
+					handleCallbackInfo( ci, "destroy", false );
 					break;
 				case "hurt":
 				case "hurt_baby":
@@ -137,23 +131,23 @@ public class LivingEntityMixin {
 				case "stunned":
 				case "horn_break":
 				case "ram_impact":
-					handleCallbackInfo( ci, "damage" );
+					handleCallbackInfo( ci, "damage", true );
 					break;
 				case "death":
 				case "death_water":
 				case "death_land":
 				case "death_small":
 				case "death_baby":
-					handleCallbackInfo( ci, "death" );
+					handleCallbackInfo( ci, "death", true );
 					break;
 				case "saddle":
-					handleCallbackInfo( ci, "saddle" );
+					handleCallbackInfo( ci, "saddle", false );
 					break;
 				case "shear":
-					handleCallbackInfo( ci, "sheared" );
+					handleCallbackInfo( ci, "sheared", false );
 					break;
 				case "trade":
-					handleCallbackInfo( ci, "trade" );
+					handleCallbackInfo( ci, "trade", false );
 					break;
 				case "celebrate":
 				case "pollinate":
@@ -163,7 +157,7 @@ public class LivingEntityMixin {
 				case "swag":
 				case "happy":
 				case "lay_egg":
-					handleCallbackInfo( ci, "celebrate" );
+					handleCallbackInfo( ci, "celebrate", false );
 					break;
 				case "work_armorer":
 				case "work_butcher":
@@ -178,7 +172,7 @@ public class LivingEntityMixin {
 				case "work_shepherd":
 				case "work_toolsmith":
 				case "work_weaponsmith":
-					handleCallbackInfo( ci, "work" );
+					handleCallbackInfo( ci, "work", false );
 					break;
 				case "hiss":
 				case "growl":
@@ -200,11 +194,11 @@ public class LivingEntityMixin {
 				case "aggressive_ambient":
 				case "sonic_charge":
 				case "agitated":
-					handleCallbackInfo( ci, "angry" );
+					handleCallbackInfo( ci, "angry", false );
 					break;
 				case "retreat":
 				case "roll":
-					handleCallbackInfo( ci, "retreat" );
+					handleCallbackInfo( ci, "retreat", false );
 					break;
 				case "creaking_activate":
 				case "creaking_spawn":
@@ -212,33 +206,33 @@ public class LivingEntityMixin {
 				case "unroll_start":
 				case "reappeared":
 				case "spawn":
-					handleCallbackInfo( ci, "greeting" );
+					handleCallbackInfo( ci, "greeting", false );
 					break;
 				case "dig":
 				case "disappeared":
-					handleCallbackInfo( ci, "farewell" );
+					handleCallbackInfo( ci, "farewell", false );
 					break;
 				case "jealous":
-					handleCallbackInfo( ci, "jealous" );
+					handleCallbackInfo( ci, "jealous", false );
 					break;
 				case "admiring_item":
-					handleCallbackInfo( ci, "admire" );
+					handleCallbackInfo( ci, "admire", false );
 					break;
 				case "convert":
 				case "infect":
 				case "converted_to_zombified":
 				case "converted_to_drowned":
 				case "converted_to_stray":
-					handleCallbackInfo( ci, "convertBad" );
+					handleCallbackInfo( ci, "convertBad", true );
 					break;
 				case "hungry":
 				case "beg_for_food":
 				case "whine":
-					handleCallbackInfo( ci, "hungry" );
+					handleCallbackInfo( ci, "hungry", false );
 					break;
 				case "eat":
 				case "tongue":
-					handleCallbackInfo( ci, "eat" );
+					handleCallbackInfo( ci, "eat", false );
 					break;
 				case "item_given":
 				case "item_taken":
@@ -250,17 +244,16 @@ public class LivingEntityMixin {
 				case "shamble":
 				case "shamble_baby":
 				case "yes":
-					handleCallbackInfo( ci, "yes" );
+					handleCallbackInfo( ci, "yes", false );
 					break;
 				case "no":
 				case "cant_breed":
-					handleCallbackInfo( ci, "no" );
+					handleCallbackInfo( ci, "no", false );
 					break;
 				default:
 					Babelfish.LOGGER.info("Untranslated Sound: " + sound.getId().getPath());
-			}
-		}
-		handleCallbackInfo( ci, "talk" );
+			} // switch
+		} // if
 	}
 
 //	@Inject(method = "onDeath", at = @At("HEAD"), cancellable = true)
@@ -280,7 +273,7 @@ public class LivingEntityMixin {
 
 	@Inject(method = "lookAt", at = @At("HEAD"), cancellable = true)
 	private void lookAt(EntityAnchorArgumentType.EntityAnchor anchorPoint, Vec3d target, CallbackInfo ci) {
-		handleCallbackInfo( ci, "look" );
+		handleCallbackInfo( ci, "look", true );
 	}
 
 //	@Inject(method = "teleport", at = @At("HEAD"), cancellable = true)

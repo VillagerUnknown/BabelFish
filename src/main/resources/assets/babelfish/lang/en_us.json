@@ -9,7 +9,9 @@
 
   "text.autoconfig.villagerunknown-babelfish.category.Chat": "Chat",
 
-  "text.autoconfig.villagerunknown-babelfish.option.translationChatMessageFrequency": "Translation Chat Message Frequency",
+  "text.autoconfig.villagerunknown-babelfish.option.translationChatMessageEntityReductionFactor": "Translation Chat Message Entity Reduction Factor",
+  "text.autoconfig.villagerunknown-babelfish.option.translationChatMessageMinimumChance": "Translation Chat Message Minimum Chance",
+  "text.autoconfig.villagerunknown-babelfish.option.translationChatMessageDelay": "Translation Chat Message Delay",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForBabelFishChatter": "Chance for Babel Fish Chatter",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForWorldHint": "Chance for World Hint",
 
