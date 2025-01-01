@@ -21,7 +21,7 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	 */
 	
 	@ConfigEntry.Category("Chat")
-	public int translationChatMessageFrequency = 256;
+	public int translationChatMessageFrequency = 16;
 	
 	@ConfigEntry.Category("Chat")
 	public float chanceForBabelFishChatter = 0.00005F;
