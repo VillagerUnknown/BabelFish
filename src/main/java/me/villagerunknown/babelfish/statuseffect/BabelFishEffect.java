@@ -2,11 +2,13 @@ package me.villagerunknown.babelfish.statuseffect;
 
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
+import me.villagerunknown.babelfish.translator.BabelFishTranslator;
 import me.villagerunknown.platform.util.EntityUtil;
 import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,7 +25,7 @@ public class BabelFishEffect extends StatusEffect {
 	private static final Random rand = new Random();
 	
 	public BabelFishEffect() {
-		super(StatusEffectCategory.BENEFICIAL, 0xADD8E6);
+		super(StatusEffectCategory.BENEFICIAL, 0xfff000);
 	}
 	
 	@Override
@@ -37,7 +39,7 @@ public class BabelFishEffect extends StatusEffect {
 		
 		if( entity instanceof ServerPlayerEntity serverPlayerEntity ) {
 			EntityUtil.addStatusEffect( serverPlayerEntity, StatusEffects.NAUSEA, 120, 0, true, true, true);
-			sendMessage( serverPlayerEntity, formMessageWithPrefix( babelFishStatusEffectFeature.MESSAGES_GREETINGS.get(rand.nextInt(babelFishStatusEffectFeature.MESSAGES_GREETINGS.size())) ) );
+			sendMessage( serverPlayerEntity, formMessageWithPrefix( BabelFishTranslator.TRANSLATION_GREETING.get(rand.nextInt(BabelFishTranslator.TRANSLATION_GREETING.size())) ) );
 		} // if
 	}
 	
@@ -59,7 +61,7 @@ public class BabelFishEffect extends StatusEffect {
 		
 		if( canSendMessage( entity.getWorld() ) && MathUtil.hasChance( Babelfish.CONFIG.chanceForBabelFishChatter ) ) {
 			if( entity instanceof ServerPlayerEntity serverPlayerEntity ) {
-				sendMessage( serverPlayerEntity, formMessageWithPrefix( babelFishStatusEffectFeature.MESSAGES_CHATTER.get(rand.nextInt(babelFishStatusEffectFeature.MESSAGES_CHATTER.size())) ) );
+				sendMessage( serverPlayerEntity, formMessageWithPrefix( BabelFishTranslator.TRANSLATION_CHATTER.get(rand.nextInt(BabelFishTranslator.TRANSLATION_CHATTER.size())) ) );
 			} // if
 		} // if
 		
@@ -69,7 +71,7 @@ public class BabelFishEffect extends StatusEffect {
 	@Override
 	public void onEntityRemoval(LivingEntity entity, int amplifier, Entity.RemovalReason reason) {
 		if( entity instanceof ServerPlayerEntity serverPlayerEntity ) {
-			sendMessage( serverPlayerEntity, formMessageWithPrefix( babelFishStatusEffectFeature.MESSAGES_FAREWELLS.get(rand.nextInt(babelFishStatusEffectFeature.MESSAGES_FAREWELLS.size())) ) );
+			sendMessage( serverPlayerEntity, formMessageWithPrefix( BabelFishTranslator.TRANSLATION_FAREWELL.get(rand.nextInt(BabelFishTranslator.TRANSLATION_FAREWELL.size())) ) );
 		} // if
 		
 		super.onEntityRemoval(entity, amplifier, reason);
@@ -85,7 +87,7 @@ public class BabelFishEffect extends StatusEffect {
 	}
 	
 	public String formMessageWithPrefix( String message ) {
-		return babelFishStatusEffectFeature.DEFAULT_BABEL_FISH_NAME + ": " + message;
+		return "<" + babelFishStatusEffectFeature.DEFAULT_BABEL_FISH_NAME + "> " + message;
 	}
 	
 }

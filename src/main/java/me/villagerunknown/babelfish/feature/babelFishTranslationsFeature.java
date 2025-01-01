@@ -444,7 +444,7 @@ public class babelFishTranslationsFeature {
 				message = TRANSLATION_NO.get( rand.nextInt( TRANSLATION_NO.size() ) );
 				break;
 			default:
-				message = "Hrm...";
+				Babelfish.LOGGER.info( "Unrecognized context attempting to send translation: " + context );
 				break;
 		} // switch
 		
@@ -454,27 +454,25 @@ public class babelFishTranslationsFeature {
 	}
 	
 	public static String formTranslationTalk(EntityType<? extends Entity> type, PlayerEntity player) {
-		String message = "";
+		AbstractTranslator translator = switch (type.getUntranslatedName()) {
+			case "cod", "salmon", "tropical_fish", "pufferfish", "dolphin", "squid", "glow_squid" -> new FishTranslator();
+			case "babel_fish" -> new BabelFishTranslator();
+			case "bee" -> new BeeTranslator();
+			case "wandering_trader" -> new WanderingTraderTranslator();
+			case "villager" -> new VillagerTranslator();
+			case "zombie_villager" -> new ZombieVillagerTranslator();
+			case "pillager" -> new PillagerTranslator();
+			case "skeleton" -> new SkeletonTranslator();
+			case "creeper" -> new CreeperTranslator();
+			case "zombie" -> new ZombieTranslator();
+			case "piglin" -> new PiglinTranslator();
+			case "piglin_brute" -> new PiglinBruteTranslator();
+			case "zombified_piglin" -> new ZombifiedPiglinTranslator();
+			case "enderman" -> new EndermanTranslator();
+			default -> new AmbientTranslator();
+		};
 		
-		switch( type.getUntranslatedName() ) {
-			case "bee":
-				message = TranslationProvider.translate( new BeeTranslator(), player  );
-				break;
-			case "villager":
-				message = TranslationProvider.translate( new VillagerTranslator(), player  );
-				break;
-			case "pillager":
-				message = TranslationProvider.translate( new PillagerTranslator(), player  );
-				break;
-			case "piglin":
-				message = TranslationProvider.translate( new PiglinTranslator(), player  );
-				break;
-			default:
-				message = TranslationProvider.translate( new AmbientTranslator(), player  );
-				break;
-		} // switch
-		
-		return message;
+		return TranslationProvider.translate( translator, player  );
 	}
 	
 	public static boolean canSendMessage( World world, String message ) {
@@ -511,7 +509,7 @@ public class babelFishTranslationsFeature {
 		boolean isQuestion = false;
 		
 		for (String s : PUNCTUATION_QUESTION) {
-			if( message.startsWith( s ) ) {
+			if( message.startsWith( s + " " ) ) {
 				isQuestion = true;
 				break;
 			} // if

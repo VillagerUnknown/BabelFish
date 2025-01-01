@@ -17,19 +17,7 @@ import java.util.List;
 
 public class babelFishStatusEffectFeature {
 	
-	public static String DEFAULT_BABEL_FISH_NAME = "Babel Fish";
-	
-	public static List<String> MESSAGES_GREETINGS = List.of(
-			"Oh, Hello there."
-	);
-	
-	public static List<String> MESSAGES_CHATTER = List.of(
-			"So, what's grass feel like?"
-	);
-	
-	public static List<String> MESSAGES_FAREWELLS = List.of(
-			"Oh, ok, I guess this is Goodbye then."
-	);
+	public static String DEFAULT_BABEL_FISH_NAME = "Babel Fish Translator";
 	
 	public static final StatusEffect BABEL_FISH_EFFECT = new BabelFishEffect();
 	public static RegistryEntry<StatusEffect> BABEL_FISH_EFFECT_REGISTRY;
