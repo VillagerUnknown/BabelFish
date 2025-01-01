@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "group": "food",
+  "ingredient": {
+    "item": "villagerunknown-babelfish:babel_fish"
+  },
+  "result": {
+    "id": "villagerunknown-babelfish:cooked_babel_fish"
+  }
+}
