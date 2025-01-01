@@ -1,6 +1,6 @@
 # VillagerUnknown's Babel Fish
 
-Adds a fish that, when consumed from a bucket, provides translations and world hints to the player.
+Adds a bright yellow fish that, when consumed from a bucket, provides translations and world hints to the player.
 
 **Features:**
 
@@ -10,9 +10,13 @@ Adds a fish that, when consumed from a bucket, provides translations and world h
 
 **Babel Fish Mob**
 
-The Babel Fish can talk to players and, when consumed from a bucket, can provide translations for other species to the player.
+The Babel Fish can talk to players and, when consumed from a bucket, can provide translations for mobs to the player.
 
 Babel Fish have a small chance to spawn in Rivers and a slightly higher chance to spawn in variations of the Warm Ocean.
+
+If you prefer to eat a Babel Fish instead of drink one, Babel Fish can be eaten raw, but it's best to cook them with a campfire, smoker, or furnace.
+
+For some reason, Dolphins really want you to feed them a raw Babel Fish.
 
 **Babel Fish Translator Status Effect**
 
@@ -22,7 +26,7 @@ The frequency of chat messages for translations can be controlled through the co
 
 **Translations and World Hints**
 
-With the Babel Fish Translator status effect applied, mobs have a chance to provide hints to structure locations in the world.
+With the Babel Fish Translator status effect applied, mobs have a chance to provide hints to the locations of biomes and structures in the world.
 
 * **Bees** - Flower Forests
 * **Fish** - Ocean Monuments, Ocean Ruins, Ruined Portals in the Ocean, Rivers, and all Oceans
@@ -43,4 +47,4 @@ With the Babel Fish Translator status effect applied, mobs have a chance to prov
 
 **Known Issues**
 
-* Performance can be impacted by this mod as it frequently uses code similar to the `/locate` command for structure hints.
+* Performance can be impacted by this mod as it frequently uses code similar to the `/locate` command for structure hints. This is controlled by the `worldHintSearchRadius` config value. By default, this is set to the lowest possible value. Increase this value at your own discretion.
