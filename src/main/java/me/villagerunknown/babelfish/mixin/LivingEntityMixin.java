@@ -3,11 +3,14 @@ package me.villagerunknown.babelfish.mixin;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
 import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
+import me.villagerunknown.babelfish.statuseffect.BabelFishEffect;
 import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.WorldUtil;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.Vec3d;
@@ -18,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 @Mixin( LivingEntity.class )
 public class LivingEntityMixin {
@@ -253,6 +257,14 @@ public class LivingEntityMixin {
 				default:
 					Babelfish.LOGGER.info("Untranslated Sound: " + sound.getId().getPath());
 			} // switch
+		} // if
+	}
+	
+	@Inject(method = "onStatusEffectRemoved", at = @At("HEAD"), cancellable = true)
+	private void onStatusEffectRemoved(StatusEffectInstance effectInstance, CallbackInfo ci) {
+		if( effectInstance.getEffectType() == babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) {
+			BabelFishEffect effect = ((BabelFishEffect)effectInstance.getEffectType().value());
+			effect.onRemovedFromEntity( (LivingEntity) (Object) this );
 		} // if
 	}
 

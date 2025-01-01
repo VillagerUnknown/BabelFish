@@ -8,10 +8,12 @@ import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -67,16 +69,13 @@ public class BabelFishEffect extends StatusEffect {
 		return super.applyUpdateEffect(entity, amplifier);
 	}
 	
-	@Override
-	public void onEntityRemoval(LivingEntity entity, int amplifier, Entity.RemovalReason reason) {
+	public void onRemovedFromEntity(LivingEntity entity) {
 		if( entity instanceof ServerPlayerEntity serverPlayerEntity ) {
 			sendMessage( serverPlayerEntity, formMessageWithPrefix( BabelFishTranslator.TRANSLATION_FAREWELL.get(rand.nextInt(BabelFishTranslator.TRANSLATION_FAREWELL.size())) ) );
 		} // if
-		
-		super.onEntityRemoval(entity, amplifier, reason);
 	}
 	
-	public boolean canSendMessage( World world ) {
+	public boolean canSendMessage(World world ) {
 		return ( world.getTime() - Babelfish.CONFIG.translationChatMessageDelay >= timeMessageSent );
 	}
 	
