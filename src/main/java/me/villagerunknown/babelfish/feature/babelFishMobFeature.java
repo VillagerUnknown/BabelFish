@@ -3,19 +3,38 @@ package me.villagerunknown.babelfish.feature;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.entity.BabelFishEntity;
 import me.villagerunknown.babelfish.item.BabelFishBucketItem;
+import me.villagerunknown.platform.util.EntityUtil;
+import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.RegistryUtil;
+import me.villagerunknown.platform.util.WorldUtil;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
+import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.DolphinEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class babelFishMobFeature {
 	
@@ -38,6 +57,7 @@ public class babelFishMobFeature {
 	public static void execute() {
 		registerEntity();
 		registerItems();
+		registerEvents();
 	}
 	
 	private static void registerItems() {
@@ -98,6 +118,45 @@ public class babelFishMobFeature {
 		BiomeModifications.addSpawn( BiomeSelectors.includeByKey( BiomeKeys.OCEAN, BiomeKeys.DEEP_OCEAN, BiomeKeys.DEEP_LUKEWARM_OCEAN, BiomeKeys.WARM_OCEAN ), SpawnGroup.WATER_CREATURE, BABEL_FISH_ENTITY_TYPE, 5, 1, 1 );
 		
 		SpawnRestriction.register( BABEL_FISH_ENTITY_TYPE, SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, BabelFishEntity::canSpawn );
+	}
+	
+	private static void registerEvents() {
+		registerUseEntityEvent();
+	}
+	
+	private static void registerUseEntityEvent() {
+		// # If you give a Dolphin a Babel Fish...
+		UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
+			ItemStack stack = playerEntity.getStackInHand( hand );
+			
+			if( stack.getItem() == BABEL_FISH_ITEM && entity.getType().equals( EntityType.DOLPHIN ) ) {
+				if( entity instanceof LivingEntity livingEntity ) {
+					RegistryEntry<StatusEffect> levitation = StatusEffects.LEVITATION;
+					
+					if( !livingEntity.hasStatusEffect( levitation ) ) {
+						EntityUtil.addStatusEffect(livingEntity, levitation, -1, 0, false, false, false);
+					} // if
+					
+					stack.decrementUnlessCreative( 1, playerEntity );
+				} // if
+				
+				return ActionResult.CONSUME;
+			} // if
+			
+			return ActionResult.PASS;
+		});
+		
+		// # Send the Dolphin to Space
+		ServerTickEvents.START_WORLD_TICK.register(serverWorld -> {
+			List<? extends DolphinEntity> dolphins = serverWorld.getEntitiesByType(EntityType.DOLPHIN, (b) -> true);
+			
+			for (DolphinEntity dolphin : dolphins) {
+				if( dolphin.hasStatusEffect( StatusEffects.LEVITATION ) ) {
+					dolphin.addVelocity(0, 0.055, 0);
+					dolphin.setPitch( -45 );
+				} // if
+			} // for
+		});
 	}
 	
 }
