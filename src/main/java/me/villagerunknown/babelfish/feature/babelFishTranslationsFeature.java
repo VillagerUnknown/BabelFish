@@ -11,11 +11,26 @@ import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 
 public class babelFishTranslationsFeature {
+	
+	public static List<String> TRANSLATION_GREETING = List.of(
+			"Hi",
+			"Hello",
+			"I see you"
+	);
+	
+	public static List<String> TRANSLATION_FAREWELL = List.of(
+			"Bye",
+			"Goodbye",
+			"See you later"
+	);
 	
 	public static List<String> TRANSLATION_YES = List.of(
 			"Yes",
@@ -61,7 +76,74 @@ public class babelFishTranslationsFeature {
 	);
 	
 	public static List<String> TRANSLATION_GROWTH = List.of(
-			"I'm big now"
+			"I'm big now",
+			"I'm a big boy",
+			"I'm a big girl",
+			"Well, look at me all grown up"
+	);
+	
+	public static List<String> TRANSLATION_CONVERT = List.of(
+			"Thank you for saving me",
+			"That was an awful experience"
+	);
+	
+	public static List<String> TRANSLATION_CONVERT_BAD = List.of(
+			"I can feel a change happening",
+			"What is this feeling inside me",
+			"Why does this always happen to me",
+			"Not again"
+	);
+	
+	public static List<String> TRANSLATION_HUNGRY = List.of(
+			"I'm hungry",
+			"Feed me",
+			"I need food",
+			"I want food",
+			"Can I have food"
+	);
+	
+	public static List<String> TRANSLATION_EAT = List.of(
+			"This tastes so good",
+			"That tasted so good",
+			"That was good"
+	);
+	
+	public static List<String> TRANSLATION_PUSH = List.of(
+			"Stop pushing",
+			"Don't shove",
+			"Don't push",
+			"Get off my foot",
+			"That was my foot"
+	);
+	
+	public static List<String> TRANSLATION_PANIC = List.of(
+			"Run",
+			"Run away",
+			"Panic",
+			"Don't panic",
+			"Ok, me, calm down"
+	);
+	
+	public static List<String> TRANSLATION_ADMIRE = List.of(
+			"Gold",
+			"Shiny",
+			"Ooh, shiny",
+			"This is nice",
+			"I want this"
+	);
+	
+	public static List<String> TRANSLATION_JEALOUS = List.of(
+			"I want that",
+			"That should be mine",
+			"I wanted that",
+			"I should have that"
+	);
+	
+	public static List<String> TRANSLATION_TRADE_BROWSE = List.of(
+			"Good choice",
+			"Very good choice",
+			"You have a good eye",
+			"You have great taste"
 	);
 	
 	public static List<String> TRANSLATION_TRADE = List.of(
@@ -70,11 +152,99 @@ public class babelFishTranslationsFeature {
 			"You got a good deal"
 	);
 	
+	public static List<String> TRANSLATION_CELEBRATE = List.of(
+			"Yay",
+			"Hurray",
+			"Huzzah",
+			"Woo",
+			"Woo-hoo",
+			"Wow",
+			"Amazing",
+			"Awesome",
+			"Good job"
+	);
+	
+	public static List<String> TRANSLATION_SADDLE = List.of(
+			"Are we going somewhere",
+			"Can I help you",
+			"Where are we going",
+			"Where to",
+			"What are you doing with that",
+			"Oh, that's a nice one"
+	);
+	
+	public static List<String> TRANSLATION_ANGRY = List.of(
+			"No",
+			"Bad",
+			"Grr",
+			"Argh",
+			"Why"
+	);
+	
+	public static List<String> TRANSLATION_SHEARED = List.of(
+			"That feels better",
+			"Now I feel naked"
+	);
+	
 	public static List<String> TRANSLATION_WORK = List.of(
 			"Where are my glasses",
 			"Where did I put my glasses",
 			"I need to get more of these",
 			"Insert rod a into slot b"
+	);
+	
+	public static List<String> TRANSLATION_ATTACK = List.of(
+			"Attack",
+			"Die",
+			"Go away",
+			"Leave me alone"
+	);
+	
+	public static List<String> TRANSLATION_DOOR_ATTACK = List.of(
+			"Let me in",
+			"It's cold",
+			"Can I come in",
+			"Knock knock",
+			"Housekeeping",
+			"Pizza delivery",
+			"Huber Eats delivery",
+			"Did someone order a large stack of golden carrots"
+	);
+	
+	public static List<String> TRANSLATION_DOOR_BREAK = List.of(
+			"Here's zombie",
+			"Your door bell isn't working",
+			"Your door is broken",
+			"You should get someone to fix this door for you",
+			"I hope it's ok, I let myself in"
+	);
+	
+	public static List<String> TRANSLATION_DESTROY = List.of(
+			"Destroy",
+			"Destroy it",
+			"No"
+	);
+	
+	public static List<String> TRANSLATION_KNOCKBACK = List.of(
+			"Ow",
+			"Ouch",
+			"Ouchies"
+	);
+	
+	public static List<String> TRANSLATION_RETREAT = List.of(
+			"Run",
+			"Run away",
+			"Retreat",
+			"Scramble",
+			"Scatter",
+			"Cheese it"
+	);
+	
+	public static List<String> TRANSLATION_TELEPORT = List.of(
+			"Whoa",
+			"Trippy",
+			"I never get used to that",
+			"I think I'm going to be sick"
 	);
 	
 	public static List<String> TRANSLATION_DAMAGE = List.of(
@@ -126,7 +296,9 @@ public class babelFishTranslationsFeature {
 			"Should",
 			"Might",
 			"Have",
-			"Has"
+			"Has",
+			"Do",
+			"Did"
 	);
 	
 	private static long timeMessageSent = 0;
@@ -135,7 +307,7 @@ public class babelFishTranslationsFeature {
 	private static final Random rand = new Random();
 	
 	public static void execute() {
-		registerEvents();
+//		registerEvents();
 	}
 	
 	public static void registerEvents() {
@@ -158,25 +330,151 @@ public class babelFishTranslationsFeature {
 				babelFishTranslationsFeature.sendTranslation( serverPlayerEntity, entity, "trackStop" );
 			} // if
 		});
+	}
+	
+	public static void sendTranslation(PlayerEntity player, Entity entity, String context ) {
+		EntityType<?> type = entity.getType();
 		
-		ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register((serverWorld, entity, livingEntity) -> {
-			if( entity instanceof PlayerEntity || ( entity instanceof PlayerEntity && livingEntity instanceof PlayerEntity ) ) {
-				return;
-			} // if
-			
-			if( !(entity instanceof LivingEntity) ) {
-				return;
-			} // if
-			
-			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(serverWorld, entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
-			if( !players.isEmpty() ) {
-				for (ServerPlayerEntity player : players) {
-					if( player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
-						babelFishTranslationsFeature.sendTranslation( player, entity, "kill" );
-					} // if
-				} // if
-			} // if
-		});
+		String message = "";
+		
+		switch( context ) {
+			case "talk":
+			case "talkTo":
+			case "look":
+			case "interact":
+				message = formTranslationTalk( type, player );
+				break;
+			case "trackStart":
+				message = TRANSLATION_TRACK_START.get( rand.nextInt( TRANSLATION_TRACK_START.size() ) );
+				break;
+			case "trackStop":
+				message = TRANSLATION_TRACK_STOP.get( rand.nextInt( TRANSLATION_TRACK_STOP.size() ) );
+				break;
+			case "sleep":
+				message = TRANSLATION_SLEEP.get( rand.nextInt( TRANSLATION_SLEEP.size() ) );
+				break;
+			case "wake":
+				message = TRANSLATION_WAKE.get( rand.nextInt( TRANSLATION_WAKE.size() ) );
+				break;
+			case "trade":
+				message = TRANSLATION_TRADE_BROWSE.get( rand.nextInt( TRANSLATION_TRADE_BROWSE.size() ) );
+				break;
+			case "sale":
+				message = TRANSLATION_TRADE.get( rand.nextInt( TRANSLATION_TRADE.size() ) );
+				break;
+			case "work":
+				message = TRANSLATION_WORK.get( rand.nextInt( TRANSLATION_WORK.size() ) );
+				break;
+			case "growth":
+				message = TRANSLATION_GROWTH.get( rand.nextInt( TRANSLATION_GROWTH.size() ) );
+				break;
+			case "convertBad":
+				message = TRANSLATION_CONVERT_BAD.get( rand.nextInt( TRANSLATION_CONVERT_BAD.size() ) );
+				break;
+			case "hungry":
+				message = TRANSLATION_HUNGRY.get( rand.nextInt( TRANSLATION_HUNGRY.size() ) );
+				break;
+			case "eat":
+				message = TRANSLATION_EAT.get( rand.nextInt( TRANSLATION_EAT.size() ) );
+				break;
+			case "push":
+				message = TRANSLATION_PUSH.get( rand.nextInt( TRANSLATION_PUSH.size() ) );
+				break;
+			case "admire":
+				message = TRANSLATION_ADMIRE.get( rand.nextInt( TRANSLATION_ADMIRE.size() ) );
+				break;
+			case "jealous":
+				message = TRANSLATION_JEALOUS.get( rand.nextInt( TRANSLATION_JEALOUS.size() ) );
+				break;
+			case "panic":
+				message = TRANSLATION_PANIC.get( rand.nextInt( TRANSLATION_PANIC.size() ) );
+				break;
+			case "celebrate":
+				message = TRANSLATION_CELEBRATE.get( rand.nextInt( TRANSLATION_CELEBRATE.size() ) );
+				break;
+			case "saddle":
+				message = TRANSLATION_SADDLE.get( rand.nextInt( TRANSLATION_SADDLE.size() ) );
+				break;
+			case "sheared":
+				message = TRANSLATION_SHEARED.get( rand.nextInt( TRANSLATION_SHEARED.size() ) );
+				break;
+			case "angry":
+				message = TRANSLATION_ANGRY.get( rand.nextInt( TRANSLATION_ANGRY.size() ) );
+				break;
+			case "attack":
+				message = TRANSLATION_ATTACK.get( rand.nextInt( TRANSLATION_ATTACK.size() ) );
+				break;
+			case "attackDoor":
+				message = TRANSLATION_DOOR_ATTACK.get( rand.nextInt( TRANSLATION_DOOR_ATTACK.size() ) );
+				break;
+			case "breakDoor":
+				message = TRANSLATION_DOOR_BREAK.get( rand.nextInt( TRANSLATION_DOOR_BREAK.size() ) );
+				break;
+			case "destroy":
+				message = TRANSLATION_DESTROY.get( rand.nextInt( TRANSLATION_DESTROY.size() ) );
+				break;
+			case "knockback":
+				message = TRANSLATION_KNOCKBACK.get( rand.nextInt( TRANSLATION_KNOCKBACK.size() ) );
+				break;
+			case "damage":
+				message = TRANSLATION_DAMAGE.get( rand.nextInt( TRANSLATION_DAMAGE.size() ) );
+				break;
+			case "retreat":
+				message = TRANSLATION_RETREAT.get( rand.nextInt( TRANSLATION_RETREAT.size() ) );
+				break;
+			case "death":
+				message = TRANSLATION_DEATH.get( rand.nextInt( TRANSLATION_DEATH.size() ) );
+				break;
+			case "kill":
+				message = TRANSLATION_KILL.get( rand.nextInt( TRANSLATION_KILL.size() ) );
+				break;
+			case "teleport":
+				message = TRANSLATION_TELEPORT.get( rand.nextInt( TRANSLATION_TELEPORT.size() ) );
+				break;
+			case "greeting":
+				message = TRANSLATION_GREETING.get( rand.nextInt( TRANSLATION_GREETING.size() ) );
+				break;
+			case "farewell":
+				message = TRANSLATION_FAREWELL.get( rand.nextInt( TRANSLATION_FAREWELL.size() ) );
+				break;
+			case "yes":
+				message = TRANSLATION_YES.get( rand.nextInt( TRANSLATION_YES.size() ) );
+				break;
+			case "no":
+				message = TRANSLATION_NO.get( rand.nextInt( TRANSLATION_NO.size() ) );
+				break;
+			default:
+				message = "Hrm...";
+				break;
+		} // switch
+		
+		if( !message.isEmpty() ) {
+			sendMessage(player, entity, message);
+		} // if
+	}
+	
+	public static String formTranslationTalk(EntityType<? extends Entity> type, PlayerEntity player) {
+		String message = "";
+		
+		switch( type.getUntranslatedName() ) {
+			case "bee":
+				message = TranslationProvider.translate( new BeeTranslator(), player  );
+				break;
+			case "villager":
+				message = TranslationProvider.translate( new VillagerTranslator(), player  );
+				break;
+			case "pillager":
+				message = TranslationProvider.translate( new PillagerTranslator(), player  );
+				break;
+			case "piglin":
+				message = TranslationProvider.translate( new PiglinTranslator(), player  );
+				break;
+			default:
+				message = TranslationProvider.translate( new AmbientTranslator(), player  );
+				break;
+		} // switch
+		
+		return message;
 	}
 	
 	public static boolean canSendMessage( World world, String message ) {
@@ -241,85 +539,6 @@ public class babelFishTranslationsFeature {
 		timeMessageSent = player.getWorld().getTime();
 		
 		MessageUtil.sendChatMessage( player, message );
-	}
-	
-	public static void sendTranslation(PlayerEntity player, Entity entity, String context ) {
-		EntityType<?> type = entity.getType();
-		
-		String message = "";
-		
-		switch( context ) {
-			case "talk":
-			case "talkTo":
-				message = formTranslationTalk( type, player );
-				break;
-			case "trackStart":
-				message = TRANSLATION_TRACK_START.get( rand.nextInt( TRANSLATION_TRACK_START.size() ) );
-				break;
-			case "trackStop":
-				message = TRANSLATION_TRACK_STOP.get( rand.nextInt( TRANSLATION_TRACK_STOP.size() ) );
-				break;
-			case "sleep":
-				message = TRANSLATION_SLEEP.get( rand.nextInt( TRANSLATION_SLEEP.size() ) );
-				break;
-			case "wake":
-				message = TRANSLATION_WAKE.get( rand.nextInt( TRANSLATION_WAKE.size() ) );
-				break;
-			case "trade":
-				message = TRANSLATION_TRADE.get( rand.nextInt( TRANSLATION_TRADE.size() ) );
-				break;
-			case "work":
-				message = TRANSLATION_WORK.get( rand.nextInt( TRANSLATION_WORK.size() ) );
-				break;
-			case "growth":
-				message = TRANSLATION_GROWTH.get( rand.nextInt( TRANSLATION_GROWTH.size() ) );
-				break;
-			case "damage":
-				message = TRANSLATION_DAMAGE.get( rand.nextInt( TRANSLATION_DAMAGE.size() ) );
-				break;
-			case "death":
-				message = TRANSLATION_DEATH.get( rand.nextInt( TRANSLATION_DEATH.size() ) );
-				break;
-			case "kill":
-				message = TRANSLATION_KILL.get( rand.nextInt( TRANSLATION_KILL.size() ) );
-				break;
-			case "yes":
-				message = TRANSLATION_YES.get( rand.nextInt( TRANSLATION_YES.size() ) );
-				break;
-			case "no":
-				message = TRANSLATION_NO.get( rand.nextInt( TRANSLATION_NO.size() ) );
-				break;
-			default:
-				break;
-		} // switch
-		
-		if( !message.isEmpty() ) {
-			sendMessage(player, entity, message);
-		} // if
-	}
-	
-	public static String formTranslationTalk(EntityType<? extends Entity> type, PlayerEntity player) {
-		String message = "";
-		
-		switch( type.getUntranslatedName() ) {
-			case "bee":
-				message = TranslationProvider.translate( new BeeTranslator(), player  );
-				break;
-			case "villager":
-				message = TranslationProvider.translate( new VillagerTranslator(), player  );
-				break;
-			case "pillager":
-				message = TranslationProvider.translate( new PillagerTranslator(), player  );
-				break;
-			case "piglin":
-				message = TranslationProvider.translate( new PiglinTranslator(), player  );
-				break;
-			default:
-				message = TranslationProvider.translate( new AmbientTranslator(), player  );
-				break;
-		} // switch
-		
-		return message;
 	}
 	
 }

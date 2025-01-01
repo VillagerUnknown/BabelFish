@@ -4,11 +4,7 @@
   "package": "me.villagerunknown.babelfish.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "LivingEntityMixin",
-    "MerchantEntityMixin",
-    "MobEntityMixin",
-    "PassiveEntityMixin",
-    "VillagerEntityMixin"
+    "LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

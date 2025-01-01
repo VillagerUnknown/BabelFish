@@ -3,18 +3,10 @@ package me.villagerunknown.babelfish.mixin;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
 import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
-import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.WorldUtil;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityInteraction;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin( VillagerEntity.class )
-public class VillagerEntityMixin {
+@Mixin( PathAwareEntity.class )
+public class PathAwareEntityMixin {
 	
 	@Unique
 	private void handleCallbackInfo(CallbackInfo ci, String context ) {
@@ -47,34 +39,11 @@ public class VillagerEntityMixin {
 		} // if
 	}
 	
-	@Inject(method = "onInteractionWith", at = @At("HEAD"), cancellable = true)
-	private void onInteractionWith(EntityInteraction interaction, Entity entity, CallbackInfo ci) {
-		handleCallbackInfo( ci, "interact" );
+	@Inject(method = "isPanicking", at = @At("HEAD"), cancellable = true)
+	private void isPanicking(CallbackInfoReturnable<Boolean> cir) {
+		if( null != cir.getReturnValue() ) {
+			handleCallbackInfo(cir, "interact");
+		} // if
 	}
 	
-	@Inject(method = "playWorkSound", at = @At("HEAD"), cancellable = true)
-	private void playWorkSound(CallbackInfo ci) {
-		handleCallbackInfo( ci, "work" );
-	}
-	
-	@Inject(method = "sayNo", at = @At("HEAD"), cancellable = true)
-	private void sayNo(CallbackInfo ci) {
-		handleCallbackInfo( ci, "no" );
-	}
-	
-	@Inject(method = "setAttacker", at = @At("HEAD"), cancellable = true)
-	private void setAttacker(CallbackInfo ci) {
-		handleCallbackInfo( ci, "damage" );
-	}
-	
-	@Inject(method = "sleep", at = @At("HEAD"), cancellable = true)
-	private void sleep(CallbackInfo ci) {
-		handleCallbackInfo( ci, "sleep" );
-	}
-	
-	@Inject(method = "wakeUp", at = @At("HEAD"), cancellable = true)
-	private void wakeUp(CallbackInfo ci) {
-		handleCallbackInfo( ci, "wake" );
-	}
-
 }
