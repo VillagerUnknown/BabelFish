@@ -47,4 +47,4 @@ With the Babel Fish Translator status effect applied, mobs have a chance to prov
 
 **Known Issues**
 
-* Performance can be impacted by this mod as it frequently uses code similar to the `/locate` command for structure hints. This is controlled by the `worldHintSearchRadius` config value. By default, this is set to the lowest possible value. Increase this value at your own discretion.
+* The Babel Fish Translator status effect can impact performance as it frequently uses code similar to the `/locate` command for world hints. This is controlled by the `worldHintSearchRadius` config value. By default, this is set to the lowest possible value. Increase this value at your own discretion.
