@@ -69,8 +69,6 @@ public class BabelFishBucketItem extends EntityBucketItem {
 			return ItemUsage.consumeHeldItem(world, user, hand);
 		} // if
 		
-		ItemStack stack = user.getStackInHand( hand );
-		
 		return super.use( world, user, hand );
 	}
 	

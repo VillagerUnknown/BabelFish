@@ -21,10 +21,10 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	 */
 	
 	@ConfigEntry.Category("Chat")
-	public float translationChatMessageEntityReductionFactor = 0.1F;
+	public float translationChatMessageEntityReductionFactor = 0.05F;
 	
 	@ConfigEntry.Category("Chat")
-	public float translationChatMessageMinimumChance = 0.1F;
+	public float translationChatMessageMinimumChance = 0.15F;
 	
 	@ConfigEntry.Category("Chat")
 	public int translationChatMessageDelay = 16;
@@ -33,6 +33,6 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	public float chanceForBabelFishChatter = 0.00005F;
 	
 	@ConfigEntry.Category("Chat")
-	public float chanceForWorldHint = 0.20F;
+	public float chanceForWorldHint = 0.2F;
 	
 }
