@@ -25,6 +25,7 @@ public class EndermanTranslator extends HostileTranslator {
 			StructureKeys.RUINED_PORTAL,
 			StructureKeys.ANCIENT_CITY,
 			StructureKeys.STRONGHOLD,
+			StructureKeys.FORTRESS,
 			StructureKeys.END_CITY
 	);
 	
