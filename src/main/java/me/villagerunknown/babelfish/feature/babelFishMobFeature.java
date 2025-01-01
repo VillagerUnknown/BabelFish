@@ -3,13 +3,15 @@ package me.villagerunknown.babelfish.feature;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.entity.BabelFishEntity;
 import me.villagerunknown.babelfish.item.BabelFishBucketItem;
-import me.villagerunknown.babelfish.item.BabelFishItem;
 import me.villagerunknown.platform.util.RegistryUtil;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Heightmap;
@@ -23,7 +25,13 @@ public class babelFishMobFeature {
 	
 	public static EntityType<BabelFishEntity> BABEL_FISH_ENTITY_TYPE = null;
 	public static Item BABEL_FISH_SPAWN_EGG_ITEM = null;
+	
+	public static FoodComponent BABEL_FISH_FOOD_COMPONENT = null;
 	public static Item BABEL_FISH_ITEM = null;
+	
+	public static FoodComponent COOKED_BABEL_FISH_FOOD_COMPONENT = null;
+	public static Item COOKED_BABEL_FISH_ITEM = null;
+	
 	public static Item BABEL_FISH_BUCKET_ITEM = null;
 	
 
@@ -46,10 +54,24 @@ public class babelFishMobFeature {
 	}
 	
 	private static void registerFishItem() {
-		BABEL_FISH_ITEM = new BabelFishItem( new Item.Settings() );
+		BABEL_FISH_FOOD_COMPONENT = new FoodComponent.Builder().nutrition(2).saturationModifier(0.2f)
+				.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100), 1.0f).build();
+		
+		BABEL_FISH_ITEM = new Item( new Item.Settings().food( BABEL_FISH_FOOD_COMPONENT ) );
 		
 		RegistryUtil.registerItem( BABEL_FISH_STRING, BABEL_FISH_ITEM, Babelfish.MOD_ID );
 		RegistryUtil.addItemToGroup( ItemGroups.FOOD_AND_DRINK, BABEL_FISH_ITEM );
+		
+		registerCookedFishItem();
+	}
+	
+	private static void registerCookedFishItem() {
+		COOKED_BABEL_FISH_FOOD_COMPONENT = new FoodComponent.Builder().nutrition(6).saturationModifier(0.6f).build();
+		
+		COOKED_BABEL_FISH_ITEM = new Item( new Item.Settings().food( COOKED_BABEL_FISH_FOOD_COMPONENT ) );
+		
+		RegistryUtil.registerItem( "cooked_" + BABEL_FISH_STRING, COOKED_BABEL_FISH_ITEM, Babelfish.MOD_ID );
+		RegistryUtil.addItemToGroup( ItemGroups.FOOD_AND_DRINK, COOKED_BABEL_FISH_ITEM );
 	}
 	
 	private static void registerBucketItem() {

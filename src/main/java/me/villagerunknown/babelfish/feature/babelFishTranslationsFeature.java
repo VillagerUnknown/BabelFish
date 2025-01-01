@@ -449,8 +449,8 @@ public class babelFishTranslationsFeature {
 	
 	public static String formTranslationTalk(EntityType<? extends Entity> type, PlayerEntity player) {
 		AbstractTranslator translator = switch (type.getUntranslatedName()) {
-			case "cod", "salmon", "tropical_fish", "pufferfish", "dolphin", "squid", "glow_squid" -> new FishTranslator();
 			case "babel_fish" -> new BabelFishTranslator();
+			case "cod", "salmon", "tropical_fish", "pufferfish", "dolphin", "squid", "glow_squid" -> new FishTranslator();
 			case "bee" -> new BeeTranslator();
 			case "wandering_trader" -> new WanderingTraderTranslator();
 			case "villager" -> new VillagerTranslator();
