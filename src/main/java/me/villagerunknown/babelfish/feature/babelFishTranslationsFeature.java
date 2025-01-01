@@ -5,16 +5,10 @@ import me.villagerunknown.babelfish.provider.TranslationProvider;
 import me.villagerunknown.babelfish.translator.*;
 import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.StringUtil;
-import me.villagerunknown.platform.util.WorldUtil;
-import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.*;
 
@@ -315,17 +309,17 @@ public class babelFishTranslationsFeature {
 			if( !( entity instanceof LivingEntity ) ) {
 				return;
 			}
-			
+
 			if( entity.squaredDistanceTo( serverPlayerEntity ) <= Babelfish.CONFIG.babelFishTranslationRadius && serverPlayerEntity.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
 				babelFishTranslationsFeature.sendTranslation( serverPlayerEntity, entity, "trackStart" );
 			} // if
 		});
-		
+
 		EntityTrackingEvents.STOP_TRACKING.register((entity, serverPlayerEntity) -> {
 			if( !( entity instanceof LivingEntity ) ) {
 				return;
 			}
-			
+
 			if( entity.squaredDistanceTo( serverPlayerEntity ) <= Babelfish.CONFIG.babelFishTranslationRadius && serverPlayerEntity.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) ) {
 				babelFishTranslationsFeature.sendTranslation( serverPlayerEntity, entity, "trackStop" );
 			} // if
@@ -480,7 +474,7 @@ public class babelFishTranslationsFeature {
 	}
 	
 	public static boolean timeToSendMessage( World world ) {
-		return ( world.getTime() - Babelfish.CONFIG.translationChatMessageFrequency >= timeMessageSent );
+		return ( world.getTime() - Babelfish.CONFIG.translationChatMessageDelay >= timeMessageSent );
 	}
 	
 	public static boolean notSameMessage( String message ) {

@@ -3,6 +3,7 @@ package me.villagerunknown.babelfish.mixin;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
 import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
+import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.WorldUtil;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
@@ -46,7 +47,10 @@ public class LivingEntityMixin {
 			if (!players.isEmpty()) {
 				for (ServerPlayerEntity player : players) {
 					if (player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY)) {
-						babelFishTranslationsFeature.sendTranslation(player, entity, context);
+						List<LivingEntity> entities = WorldUtil.getEntitiesByType(player.getServerWorld(), player.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), LivingEntity.class);
+						if(MathUtil.hasChance( (float) 100 / entities.size() ) ) {
+							babelFishTranslationsFeature.sendTranslation(player, entity, context);
+						} // if
 					} // if
 				} // if
 			} // if

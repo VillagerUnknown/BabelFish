@@ -11,7 +11,7 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	 */
 	
 	@ConfigEntry.Category("General")
-	public int babelFishTranslationRadius = 16;
+	public int babelFishTranslationRadius = 8;
 	
 	@ConfigEntry.Category("General")
 	public int worldHintSearchRadius = 1;
@@ -21,12 +21,12 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	 */
 	
 	@ConfigEntry.Category("Chat")
-	public int translationChatMessageFrequency = 16;
+	public int translationChatMessageDelay = 16;
 	
 	@ConfigEntry.Category("Chat")
 	public float chanceForBabelFishChatter = 0.00005F;
 	
 	@ConfigEntry.Category("Chat")
-	public float chanceForWorldHint = 0.075F;
+	public float chanceForWorldHint = 0.20F;
 	
 }
