@@ -8,24 +8,22 @@ import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class BabelFishEffect extends StatusEffect {
+public class BabelFishStatusEffect extends StatusEffect {
 	
 	private long timeMessageSent = 0;
 	
 	private static final Random rand = new Random();
 	
-	public BabelFishEffect() {
+	public BabelFishStatusEffect() {
 		super(StatusEffectCategory.BENEFICIAL, 0xfff000);
 	}
 	
