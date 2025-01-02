@@ -26,6 +26,10 @@ public class LivingEntityMixin {
 	
 	@Unique
 	private void handleCallbackInfo( CallbackInfo ci, String context, boolean forced ) {
+		if( !forced && !MathUtil.hasChance( Babelfish.CONFIG.chanceForTranslationFromSound) ) {
+			ci.cancel();
+		} // if
+		
 		Entity entity = (Entity) (Object) this;
 		
 		if( !entity.isAlive() || entity.isPlayer() || entity.getWorld().isClient() ) {

@@ -3,6 +3,9 @@ package me.villagerunknown.babelfish.feature;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.provider.TranslationProvider;
 import me.villagerunknown.babelfish.translator.*;
+import me.villagerunknown.babelfish.translator.hostile.*;
+import me.villagerunknown.babelfish.translator.passive.*;
+import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.StringUtil;
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
@@ -15,14 +18,22 @@ import java.util.*;
 public class babelFishTranslationsFeature {
 	
 	public static List<String> TRANSLATION_GREETING = List.of(
+			"Greetings",
 			"Hi",
+			"Hey",
+			"Hey, you",
 			"Hello",
-			"I see you"
+			"Hello there",
+			"I see you",
+			"Yo"
 	);
 	
 	public static List<String> TRANSLATION_FAREWELL = List.of(
 			"Bye",
 			"Goodbye",
+			"I will see you around",
+			"I will see you later",
+			"See you around",
 			"See you later"
 	);
 	
@@ -37,7 +48,9 @@ public class babelFishTranslationsFeature {
 	public static List<String> TRANSLATION_NO = List.of(
 			"No",
 			"Nah",
-			"Negative"
+			"Negative",
+			"Not going to happen",
+			"That is not going to happen"
 	);
 	
 	public static List<String> TRANSLATION_TRACK_START = List.of(
@@ -85,7 +98,10 @@ public class babelFishTranslationsFeature {
 			"I can feel a change happening",
 			"What is this feeling inside me",
 			"Why does this always happen to me",
-			"Not again"
+			"Not again",
+			"It is alive",
+			"No tears",
+			"No tears, please"
 	);
 	
 	public static List<String> TRANSLATION_HUNGRY = List.of(
@@ -256,6 +272,7 @@ public class babelFishTranslationsFeature {
 	
 	public static List<String> TRANSLATION_KILL = List.of(
 			"Got them",
+			"I got them",
 			"Another one bites the dust",
 			"I win"
 	);
@@ -292,8 +309,97 @@ public class babelFishTranslationsFeature {
 			"Have",
 			"Has",
 			"Do",
-			"Did"
+			"Did",
+			"Want",
+			"Wanna"
 	);
+	
+	public static Map<String, AbstractTranslator> TRANSLATORS = new HashMap<>() {{
+		// Passive
+		put( "allay", new AllayTranslator() );
+		put( "armadillo", new ArmadilloTranslator() );
+		put( "axolotl", new AxolotlTranslator() );
+		put( "babel_fish", new BabelFishTranslator() );
+		put( "bat", new BatTranslator() );
+		put( "bee", new BeeTranslator() );
+		put( "camel", new CamelTranslator() );
+		put( "cat", new CatTranslator() );
+		put( "chicken", new ChickenTranslator() );
+		put( "cod", new FishTranslator() );
+		put( "cow", new CowTranslator() );
+		put( "dolphin", new FishTranslator() );
+		put( "donkey", new DonkeyTranslator() );
+		put( "fox", new FoxTranslator() );
+		put( "frog", new FrogTranslator() );
+		put( "glow_squid", new SquidTranslator() );
+		put( "goat", new GoatTranslator() );
+		put( "horse", new HorseTranslator() );
+		put( "iron_golem", new AmbientTranslator() ); // Purposefully set to Ambient
+		put( "llama", new LlamaTranslator() );
+		put( "mooshroom", new MooshroomTranslator() );
+		put( "mule", new MuleTranslator() );
+		put( "ocelot", new OcelotTranslator() );
+		put( "panda", new PandaTranslator() );
+		put( "parrot", new ParrotTranslator() );
+		put( "pig", new PigTranslator() );
+		put( "polar_bear", new PolarBearTranslator() );
+		put( "pufferfish", new FishTranslator() );
+		put( "rabbit", new RabbitTranslator() );
+		put( "sheep", new SheepTranslator() );
+		put( "skeleton_horse", new SkeletonHorseTranslator() );
+		put( "sniffer", new SnifferTranslator() );
+		put( "snow_golem", new SnowGolemTranslator() );
+		put( "squid", new SquidTranslator() );
+		put( "strider", new StriderTranslator() );
+		put( "salmon", new FishTranslator() );
+		put( "tadpole", new FishTranslator() );
+		put( "trader_llama", new TraderLlamaTranslator() );
+		put( "tropical_fish", new FishTranslator() );
+		put( "villager", new VillagerTranslator() );
+		put( "wandering_trader", new WanderingTraderTranslator() );
+		put( "wolf", new WolfTranslator() );
+		put( "zombie_horse", new ZombieHorseTranslator() );
+		
+		// Hostile
+		put( "blaze", new BlazeTranslator() );
+		put( "bogged", new BoggedTranslator() );
+		put( "breeze", new BreezeTranslator() );
+		put( "cave_spider", new CaveSpiderTranslator() );
+//		put( "creaking", new CreakingTranslator() );
+		put( "creeper", new CreeperTranslator() );
+		put( "dragon", new DragonTranslator() );
+		put( "drowned", new DrownedTranslator() );
+		put( "elder_guardian", new ElderGuardianTranslator() );
+		put( "enderman", new EndermanTranslator() );
+		put( "endermite", new EndermiteTranslator() );
+		put( "evoker", new EvokerTranslator() );
+		put( "ghast", new GhastTranslator() );
+		put( "guardian", new GuardianTranslator() );
+		put( "hoglin", new HoglinTranslator() );
+		put( "husk", new HuskTranslator() );
+		put( "magma_cube", new MagmaCubeTranslator() );
+		put( "phantom", new PhantomTranslator() );
+		put( "piglin", new PiglinTranslator() );
+		put( "piglin_brute", new PiglinBruteTranslator() );
+		put( "pillager", new PillagerTranslator() );
+		put( "ravager", new RavagerTranslator() );
+		put( "shulker", new ShulkerTranslator() );
+		put( "silverfish", new SilverfishTranslator() );
+		put( "skeleton", new SkeletonTranslator() );
+		put( "slime", new SlimeTranslator() );
+		put( "spider", new SpiderTranslator() );
+		put( "stray", new StrayTranslator() );
+		put( "vex", new VexTranslator() );
+		put( "vindicator", new VindicatorTranslator() );
+		put( "warden", new WardenTranslator() );
+		put( "witch", new WitchTranslator() );
+		put( "wither", new WitherTranslator() );
+		put( "wither_skeleton", new WitherSkeletonTranslator() );
+		put( "zoglin", new ZoglinTranslator() );
+		put( "zombie", new ZombieTranslator() );
+		put( "zombie_villager", new ZombieVillagerTranslator() );
+		put( "zombified_piglin", new ZombifiedPiglinTranslator() );
+	}};
 	
 	private static long timeMessageSent = 0;
 	public static String lastMessageSent = "";
@@ -438,7 +544,7 @@ public class babelFishTranslationsFeature {
 				message = TRANSLATION_NO.get( rand.nextInt( TRANSLATION_NO.size() ) );
 				break;
 			default:
-				Babelfish.LOGGER.info( "Unrecognized context attempting to send translation: " + context );
+				Babelfish.LOGGER.info( "Unrecognized context when attempting to send translation: " + context );
 				break;
 		} // switch
 		
@@ -447,24 +553,18 @@ public class babelFishTranslationsFeature {
 		} // if
 	}
 	
+	public static AbstractTranslator getTranslator( String type ) {
+		AbstractTranslator translator = TRANSLATORS.get( type );
+		
+		if( null == translator ) {
+			translator = new AmbientTranslator();
+		} // if
+		
+		return translator;
+	}
+	
 	public static String formTranslationTalk(EntityType<? extends Entity> type, PlayerEntity player) {
-		AbstractTranslator translator = switch (type.getUntranslatedName()) {
-			case "babel_fish" -> new BabelFishTranslator();
-			case "cod", "salmon", "tropical_fish", "pufferfish", "dolphin", "squid", "glow_squid" -> new FishTranslator();
-			case "bee" -> new BeeTranslator();
-			case "wandering_trader" -> new WanderingTraderTranslator();
-			case "villager" -> new VillagerTranslator();
-			case "zombie_villager" -> new ZombieVillagerTranslator();
-			case "pillager" -> new PillagerTranslator();
-			case "skeleton" -> new SkeletonTranslator();
-			case "creeper" -> new CreeperTranslator();
-			case "zombie" -> new ZombieTranslator();
-			case "piglin" -> new PiglinTranslator();
-			case "piglin_brute" -> new PiglinBruteTranslator();
-			case "zombified_piglin" -> new ZombifiedPiglinTranslator();
-			case "enderman" -> new EndermanTranslator();
-			default -> new AmbientTranslator();
-		};
+		AbstractTranslator translator = getTranslator( type.getUntranslatedName() );
 		
 		return TranslationProvider.translate( translator, player  );
 	}
@@ -511,6 +611,9 @@ public class babelFishTranslationsFeature {
 		
 		if( isQuestion ) {
 			message += "?";
+			if( MathUtil.hasChance( rand.nextFloat() ) ) {
+				message += "!";
+			} // if
 		} else {
 			message += PUNCTUATION.get( rand.nextInt( PUNCTUATION.size() ) );
 		} // if, else

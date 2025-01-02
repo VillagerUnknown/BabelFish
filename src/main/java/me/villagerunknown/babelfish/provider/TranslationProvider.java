@@ -4,7 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.locator.Locator;
 import me.villagerunknown.babelfish.translator.AbstractTranslator;
-import me.villagerunknown.babelfish.translator.StructureTranslator;
+import me.villagerunknown.babelfish.translator.location.StructureTranslator;
 import me.villagerunknown.platform.util.MathUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;

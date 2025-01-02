@@ -30,6 +30,9 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	public int translationChatMessageDelay = 16;
 	
 	@ConfigEntry.Category("Chat")
+	public float chanceForTranslationFromSound = 0.66F;
+	
+	@ConfigEntry.Category("Chat")
 	public float chanceForBabelFishChatter = 0.00005F;
 	
 	@ConfigEntry.Category("Chat")

@@ -2,7 +2,7 @@ package me.villagerunknown.babelfish.statuseffect;
 
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
-import me.villagerunknown.babelfish.translator.BabelFishTranslator;
+import me.villagerunknown.babelfish.translator.passive.BabelFishTranslator;
 import me.villagerunknown.platform.util.EntityUtil;
 import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
