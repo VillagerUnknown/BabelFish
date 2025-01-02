@@ -1,42 +1,28 @@
-package me.villagerunknown.babelfish.translator;
+package me.villagerunknown.babelfish.translator.hostile;
 
-import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
+import me.villagerunknown.babelfish.translator.HostileTranslator;
 import me.villagerunknown.platform.util.ListUtil;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.Structure;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class AmbientTranslator extends AbstractTranslator {
+public class SpiderTranslator extends HostileTranslator {
 	
-	// # Keep this list relatively small as it applies to all extending translators including hostile
+	// # Spiders should be patient and wise
 	public static List<String> TRANSLATION_COMMON = List.of(
-			"Agh",
-			"Argh",
-			"Ah",
-			"Aha",
-			"Eh",
-			"Er",
-			"Meh",
-			"Oh",
-			"Uh",
-			"Um",
-			"Sigh",
-			"Hum",
-			"Hmph",
-			"Huh",
-			"Gah",
-			"Oof",
-			"Whatever"
+			"I am waiting for the perfect moment",
+			"If I wait patiently my food will come to me",
+			"Step into my web",
+			"Step into my web please"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of();
 	
-	public AmbientTranslator() {
+	public SpiderTranslator() {
 		super(
 				BIOMES,
 				STRUCTURES,
@@ -44,7 +30,7 @@ public class AmbientTranslator extends AbstractTranslator {
 		);
 	}
 	
-	public AmbientTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
+	public SpiderTranslator(List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
 		super(
 				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
 				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),
