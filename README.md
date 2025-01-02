@@ -8,6 +8,16 @@ Adds a bright yellow fish that, when consumed from a bucket, provides translatio
 * Babel Fish Translator Status Effect
 * Translations and World Hints to Biomes & Structures
 
+**Options**
+
+* **Babel Fish Translation Radius** - Radius from players to detect mobs to translate
+* **World Hint Search Radius** - Radius to search for biomes and structures
+* **Translation Chat Message Entity Reduction Factor** - Percentage to reduce chance for messages based on the number of nearby entities
+* **Translation Chat Message Minimum Chance** - Minimum chance to send a translation
+* **Translation Chat Message Delay** - Delay in ticks between sending translations
+* **Chance for Babel Fish Chatter** - Chance for random chatter from the babel fish allowing the translations
+* **Chance for World Hint** - Chance to translate a hint to a biome or structure.
+
 **Babel Fish Mob**
 
 The Babel Fish can talk to players and, when consumed from a bucket, can provide translations for mobs to the player.
@@ -16,7 +26,7 @@ Babel Fish have a small chance to spawn in Rivers and a slightly higher chance t
 
 If you prefer to eat a Babel Fish instead of drink one, Babel Fish can be eaten raw, but it's best to cook them with a campfire, smoker, or furnace.
 
-For some reason, Dolphins really want you to feed them a raw Babel Fish.
+For some reason, Dolphins really want you to feed them Babel Fish raw.
 
 **Babel Fish Translator Status Effect**
 
