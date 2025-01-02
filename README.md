@@ -15,8 +15,9 @@ Adds a bright yellow fish that, when consumed from a bucket, provides translatio
 * **Translation Chat Message Entity Reduction Factor** - Percentage to reduce chance for messages based on the number of nearby entities
 * **Translation Chat Message Minimum Chance** - Minimum chance to send a translation
 * **Translation Chat Message Delay** - Delay in ticks between sending translations
-* **Chance for Babel Fish Chatter** - Chance for random chatter from the babel fish allowing the translations
-* **Chance for World Hint** - Chance to translate a hint to a biome or structure.
+* **Chance for Translation from Sound** - Chance to provide a translation when a sound plays.
+* **Chance for Babel Fish Chatter** - Chance for random chatter from the Babel Fish allowing the translations
+* **Chance for World Hint** - Chance to provide a hint to a biome or structure as a translation.
 
 **Babel Fish Mob**
 
@@ -38,6 +39,7 @@ The frequency of chat messages for translations can be controlled through the co
 
 With the Babel Fish Translator status effect applied, mobs have a chance to provide hints to the locations of biomes and structures in the world.
 
+For example:
 * **Bees** - Flower Forests
 * **Fish** - Ocean Monuments, Ocean Ruins, Ruined Portals in the Ocean, Rivers, and all Oceans
 * **Villagers** - Jungle Temples, Mansions, Pillager Outposts, Swamp Hut, Trail Ruins, Trial Chambers, and all Villages
