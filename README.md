@@ -18,6 +18,7 @@ Adds a bright yellow fish that, when consumed from a bucket, provides translatio
 * **Chance for Translation from Sound** - Chance to provide a translation when a sound plays.
 * **Chance for Babel Fish Chatter** - Chance for random chatter from the Babel Fish allowing the translations
 * **Chance for World Hint** - Chance to provide a hint to a biome or structure as a translation.
+* **Chance for Structure Hint** - Chance to provide a structure hint instead of a biome hint as the world hint.
 
 **Babel Fish Mob**
 

@@ -12,57 +12,30 @@ public class LocationTranslationProvider {
 	protected static final Random rand = new Random();
 	
 	public static String translate( AbstractLocationTranslator translator, PlayerEntity player ) {
-		String message = "";
-		
-		switch( translator.ID ) {
-			case "minecraft:flower_forest":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "flower forest", translator.POS );
-				break;
-			case "minecraft:mineshaft":
-			case "minecraft:mineshaft_mesa":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "mineshaft", translator.POS );
-				break;
-			case "minecraft:ancient_city":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "ancient city", translator.POS );
-				break;
-			case "minecraft:desert_pyramid":
-			case "minecraft:jungle_pyramid":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "temple", translator.POS );
-				break;
-			case "minecraft:mansion":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "mansion", translator.POS );
-				break;
-			case "minecraft:ocean_monument":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "ocean monument", translator.POS );
-				break;
-			case "minecraft:pillager_outpost":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "pillager outpost", translator.POS );
-				break;
-			case "minecraft:shipwreck_beached":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "beached shipwreck", translator.POS );
-				break;
-			case "minecraft:trail_ruins":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "trail ruin", translator.POS );
-				break;
-			case "minecraft:trial_chambers":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "trial chamber", translator.POS );
-				break;
-			case "minecraft:swamp_hut":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "witch hut", translator.POS );
-				break;
-			case "minecraft:stronghold":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "stronghold", translator.POS );
-				break;
-			case "minecraft:village_desert":
-			case "minecraft:village_plains":
-			case "minecraft:village_savanna":
-			case "minecraft:village_snowy":
-			case "minecraft:village_taiga":
-				message = formGossipMessage( translator.TRANSLATION_FORMATS, player, "village", translator.POS );
-				break;
-		} // switch
-		
-		return message;
+		String location = translator.ID
+				.replace( "minecraft:", "" )
+				.replace( "mesa", "" )
+				.replace( "pyramid", "temple" )
+				.replace( "ruined_portal_desert", "ruined_portal" )
+				.replace( "ruined_portal_jungle", "ruined_portal" )
+				.replace( "ruined_portal_mountain", "ruined_portal" )
+				.replace( "ruined_portal_nether", "ruined_portal" )
+				.replace( "ruined_portal_ocean", "ruined_portal" )
+				.replace( "ruined_portal_swamp", "ruined_portal" )
+				.replace( "shipwreck_beached", "beached_shipwreck" )
+				.replace( "trail_ruins", "trail_ruin" )
+				.replace( "trial_chambers", "trial_chamber" )
+				.replace( "ocean_ruin_cold", "ocean_ruin" )
+				.replace( "ocean_ruin_warm", "ocean_ruin" )
+				.replace( "ocean_ruin", "underwater_ruin" )
+				.replace( "village_desert", "village" )
+				.replace( "village_plains", "village" )
+				.replace( "village_taiga", "village" )
+				.replace( "village_savanna", "village" )
+				.replace( "village_snowy", "village" )
+				.replace( "_", " " );
+				
+		return formGossipMessage( translator.TRANSLATION_FORMATS, player, location, translator.POS );
 	}
 	
 	public static String formGossipMessage( List<String> list, PlayerEntity player, String type, BlockPos pos ) {

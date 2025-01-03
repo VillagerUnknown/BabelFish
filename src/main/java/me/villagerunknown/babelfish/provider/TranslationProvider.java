@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.locator.Locator;
 import me.villagerunknown.babelfish.translator.AbstractTranslator;
+import me.villagerunknown.babelfish.translator.location.BiomeTranslator;
 import me.villagerunknown.babelfish.translator.location.StructureTranslator;
 import me.villagerunknown.platform.util.MathUtil;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,17 +23,25 @@ public class TranslationProvider {
 		String message = "";
 		
 		if( MathUtil.hasChance( Babelfish.CONFIG.chanceForWorldHint) ) {
-			if( !translator.BIOMES.isEmpty() ) {
-				Pair<BlockPos, RegistryEntry<Biome>> pair = Locator.locateBiome(player, translator.BIOMES.get(rand.nextInt(translator.BIOMES.size())));
-				if (null != pair) {
-					message = LocationTranslationProvider.translate(new StructureTranslator(pair.getSecond().getIdAsString(), pair.getFirst()), player);
-				} // if
-			} else if( !translator.STRUCTURES.isEmpty() ) {
+			if( MathUtil.hasChance( Babelfish.CONFIG.chanceForStructureHint ) && !translator.STRUCTURES.isEmpty() ) {
 				Pair<BlockPos, RegistryEntry<Structure>> pair = Locator.locateStructure(player, translator.STRUCTURES.get(rand.nextInt(translator.STRUCTURES.size())));
+				
 				if (null != pair) {
-					message = LocationTranslationProvider.translate(new StructureTranslator(pair.getSecond().getIdAsString(), pair.getFirst()), player);
+					BlockPos pos = pair.getFirst();
+					
+					if( player.squaredDistanceTo( pos.getX(), pos.getY(), pos.getZ() ) > 32 ) {
+						message = LocationTranslationProvider.translate(new StructureTranslator(pair.getSecond().getIdAsString(), pair.getFirst()), player);
+					} // if
 				} // if
-			} // if, else if
+			} else {
+				if( !translator.BIOMES.isEmpty() ) {
+					Pair<BlockPos, RegistryEntry<Biome>> pair = Locator.locateBiome(player, translator.BIOMES.get(rand.nextInt(translator.BIOMES.size())));
+					
+					if (null != pair) {
+						message = LocationTranslationProvider.translate(new BiomeTranslator(pair.getSecond().getIdAsString(), pair.getFirst()), player);
+					} // if
+				}
+			} // if, else
 		} else {
 			if( !translator.TRANSLATION_COMMON.isEmpty() ) {
 				message = translator.TRANSLATION_COMMON.get(rand.nextInt(translator.TRANSLATION_COMMON.size()));

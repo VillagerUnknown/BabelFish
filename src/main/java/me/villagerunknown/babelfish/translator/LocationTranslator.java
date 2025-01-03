@@ -14,7 +14,7 @@ public class LocationTranslator extends AbstractLocationTranslator {
 			"A %s was seen to the %s",
 			"Has anyone explored the %s to the %s",
 			"Have you been to the %s to the %s",
-			"Have you explored to the %s to the %s",
+			"Have you explored the %s to the %s",
 			"Have you seen the %s to the %s",
 			"Have you traveled to the %s to the %s",
 			"I dream of the day I can go to the %s to the %s",

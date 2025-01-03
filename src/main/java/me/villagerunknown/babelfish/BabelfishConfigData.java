@@ -38,4 +38,7 @@ public class BabelfishConfigData implements me.shedaniel.autoconfig.ConfigData {
 	@ConfigEntry.Category("Chat")
 	public float chanceForWorldHint = 0.2F;
 	
+	@ConfigEntry.Category("Chat")
+	public float chanceForStructureHint = 0.5F;
+	
 }

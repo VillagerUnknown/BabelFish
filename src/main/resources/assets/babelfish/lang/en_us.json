@@ -15,6 +15,7 @@
   "text.autoconfig.villagerunknown-babelfish.option.chanceForTranslationFromSound": "Chance for Translation from Sound",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForBabelFishChatter": "Chance for Babel Fish Chatter",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForWorldHint": "Chance for World Hint",
+  "text.autoconfig.villagerunknown-babelfish.option.chanceForStructureHint": "Chance for Structure Hint",
 
   "effect.villagerunknown-babelfish.babel_fish": "Babel Fish Translator",
 

@@ -1,6 +1,7 @@
 package me.villagerunknown.babelfish.mixin;
 
 import me.villagerunknown.babelfish.Babelfish;
+import me.villagerunknown.babelfish.feature.babelFishMobFeature;
 import me.villagerunknown.babelfish.feature.babelFishStatusEffectFeature;
 import me.villagerunknown.babelfish.feature.babelFishTranslationsFeature;
 import me.villagerunknown.babelfish.statuseffect.BabelFishStatusEffect;
@@ -38,9 +39,10 @@ public class LivingEntityMixin {
 		
 		if( null != entity.getServer() ) {
 			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getEntityWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
-			if (!players.isEmpty()) {
-				for (ServerPlayerEntity player : players) {
-					if (player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY)) {
+			
+			if( !players.isEmpty() ) {
+				for( ServerPlayerEntity player : players ) {
+					if( entity.getType() == babelFishMobFeature.BABEL_FISH_ENTITY_TYPE || player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY) ) {
 						List<LivingEntity> entities = WorldUtil.getEntitiesByType(player.getServerWorld(), player.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), LivingEntity.class);
 						double chance = 1 - (entities.size() * Babelfish.CONFIG.translationChatMessageEntityReductionFactor);
 						
@@ -256,8 +258,8 @@ public class LivingEntityMixin {
 				case "cant_breed":
 					handleCallbackInfo( ci, "no", false );
 					break;
-				default:
-					Babelfish.LOGGER.info("Untranslated Sound: " + sound.getId().getPath());
+//				default:
+//					Babelfish.LOGGER.info("Untranslated Sound: " + sound.getId().getPath());
 			} // switch
 		} // if
 	}
