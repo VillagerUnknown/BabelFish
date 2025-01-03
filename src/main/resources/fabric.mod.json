@@ -3,7 +3,7 @@
   "id": "villagerunknown-babelfish",
   "version": "${version}",
   "name": "VillagerUnknown's Babel Fish",
-  "description": "Adds a fish whose existence challenges the existence of God. You're welcome.",
+  "description": "Adds a bright yellow fish that, when consumed from a bucket, provides translations and world hints to the player.",
   "authors": ["VillagerUnknown"],
   "contact": {
     "homepage":"https://discord.gg/PXjXh6M38H"
