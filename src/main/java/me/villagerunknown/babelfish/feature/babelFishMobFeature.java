@@ -3,10 +3,9 @@ package me.villagerunknown.babelfish.feature;
 import me.villagerunknown.babelfish.Babelfish;
 import me.villagerunknown.babelfish.entity.BabelFishEntity;
 import me.villagerunknown.babelfish.item.BabelFishBucketItem;
-import me.villagerunknown.platform.util.EntityUtil;
-import me.villagerunknown.platform.util.MessageUtil;
-import me.villagerunknown.platform.util.RegistryUtil;
-import me.villagerunknown.platform.util.WorldUtil;
+import me.villagerunknown.babelfish.provider.TranslationProvider;
+import me.villagerunknown.babelfish.translator.passive.BabelFishTranslator;
+import me.villagerunknown.platform.util.*;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -14,6 +13,10 @@ import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.Component;
+import net.minecraft.component.ComponentMap;
+import net.minecraft.component.ComponentType;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffect;
@@ -23,7 +26,9 @@ import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -121,7 +126,33 @@ public class babelFishMobFeature {
 	}
 	
 	private static void registerEvents() {
+		registerTickEvents();
 		registerUseEntityEvent();
+	}
+	
+	private static void registerTickEvents() {
+		ServerTickEvents.START_WORLD_TICK.register(serverWorld -> {
+			List<ServerPlayerEntity> players = serverWorld.getPlayers();
+			
+			if( !players.isEmpty() ) {
+				BabelFishEntity babelFishEntity = new BabelFishEntity( BABEL_FISH_ENTITY_TYPE, serverWorld );
+				
+				for (ServerPlayerEntity player : players) {
+					if( player.getMainHandStack().getItem() == babelFishMobFeature.BABEL_FISH_BUCKET_ITEM || player.getOffHandStack().getItem() == babelFishMobFeature.BABEL_FISH_BUCKET_ITEM ) {
+						float chance = Babelfish.CONFIG.translationChatMessageMinimumChance / 50;
+						
+						if( player.getMainHandStack().getItem() == babelFishMobFeature.BABEL_FISH_BUCKET_ITEM && player.getOffHandStack().getItem() == babelFishMobFeature.BABEL_FISH_BUCKET_ITEM ) {
+							chance = Babelfish.CONFIG.translationChatMessageMinimumChance / 25;
+						}
+						
+						if( MathUtil.hasChance( chance ) ) {
+							babelFishEntity.setPosition( player.getPos() );
+							babelFishTranslationsFeature.sendTranslation(player, babelFishEntity, "passenger");
+						} // if
+					} // if
+				} // for
+			} // if
+		});
 	}
 	
 	private static void registerUseEntityEvent() {
@@ -135,6 +166,14 @@ public class babelFishMobFeature {
 					
 					if( !livingEntity.hasStatusEffect( levitation ) ) {
 						EntityUtil.addStatusEffect(livingEntity, levitation, -1, 0, false, false, false);
+						
+						ItemStack paper = new ItemStack( Items.PAPER );
+						paper.setCount(1);
+						paper.set( DataComponentTypes.CUSTOM_NAME, Text.of("So long, and thanks for all the fish.") );
+						
+						Entity paperEntity = new ItemEntity( world, entity.getX(), entity.getY(), entity.getZ(), paper );
+						
+						world.spawnEntity( paperEntity );
 					} // if
 					
 					stack.decrementUnlessCreative( 1, playerEntity );

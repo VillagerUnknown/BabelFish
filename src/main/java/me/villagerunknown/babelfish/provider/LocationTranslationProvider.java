@@ -16,6 +16,7 @@ public class LocationTranslationProvider {
 				.replace( "minecraft:", "" )
 				.replace( "mesa", "" )
 				.replace( "pyramid", "temple" )
+				.replace( "monument", "ocean_monument" )
 				.replace( "ruined_portal_desert", "ruined_portal" )
 				.replace( "ruined_portal_jungle", "ruined_portal" )
 				.replace( "ruined_portal_mountain", "ruined_portal" )
