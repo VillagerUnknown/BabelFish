@@ -10,7 +10,13 @@ import java.util.List;
 
 public class VexTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Boo",
+			"Buah",
+			"ConCorp forever",
+			"I miss ConCorp",
+			"My master wishes you to be no more"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

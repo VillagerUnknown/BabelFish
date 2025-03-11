@@ -20,6 +20,9 @@ public class PillagerTranslator extends HostileTranslator {
 			"No one is safe",
 			"No village is safe",
 			"Nothing will standing in our way",
+			"Rabble",
+			"Rabble, rabble",
+			"Rabble, rabble, rabble",
 			"We will conquer the Overworld",
 			"Wipe them out"
 	);

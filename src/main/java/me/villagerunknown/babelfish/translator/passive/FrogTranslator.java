@@ -8,7 +8,14 @@ import java.util.List;
 
 public class FrogTranslator extends AnimalTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Check twice for cars before crossing",
+			"Did that make you jump",
+			"Have you heard about the new metal ribbits",
+			"Oh, that made me jump",
+			"That made me jump",
+			"Watch for cars"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

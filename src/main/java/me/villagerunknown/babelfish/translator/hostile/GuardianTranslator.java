@@ -10,7 +10,24 @@ import java.util.List;
 
 public class GuardianTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"A little higher",
+			"A little lower",
+			"Blub",
+			"Blub blub",
+			"Bubbles",
+			"Does anyone know what we are guarding",
+			"Guard the elders",
+			"Guard the... sponges",
+			"Is that a human",
+			"Is the water getting warmer",
+			"Just keep swimming",
+			"Oh, bubbles",
+			"Ooh, bubbles",
+			"What are we guarding again",
+			"Why does the water feel warm here",
+			"Why does the water feel warm over here"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

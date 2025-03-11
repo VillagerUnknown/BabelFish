@@ -9,7 +9,16 @@ import java.util.List;
 
 public class MagmaCubeTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"E equals magma cubed... squared",
+			"How hot is it",
+			"It is hot",
+			"It is so hot right now",
+			"It is so hot, chickens are laying hard-boiled eggs",
+			"It is so hot cows are giving evaporated milk",
+			"It is so hot I saw a bird pull a worm out of the ground with an oven mitt",
+			"Liquid hot magma"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

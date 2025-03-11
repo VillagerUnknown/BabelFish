@@ -12,6 +12,7 @@ public class SpiderTranslator extends HostileTranslator {
 	
 	// # Spiders should be patient and wise
 	public static List<String> TRANSLATION_COMMON = List.of(
+			"Come here, let me give you a kiss on the neck",
 			"I am waiting for the perfect moment",
 			"If I wait patiently my food will come to me",
 			"Step into my web",

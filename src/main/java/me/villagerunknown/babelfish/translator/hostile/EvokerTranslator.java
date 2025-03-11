@@ -8,7 +8,13 @@ import java.util.List;
 
 public class EvokerTranslator extends PillagerTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Abracadabra",
+			"Alakazam",
+			"Do you want to see a magic trick",
+			"I am also available for birthday parties and mitvahs",
+			"Sim sala bim"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

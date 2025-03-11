@@ -10,8 +10,13 @@ import java.util.List;
 
 public class SkeletonHorseTranslator extends HorseTranslator {
 	
-	// # Villagers should talk a lot about the village and be paranoid (like conspiracy theorists)
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Did anyone else feel a chill in their bones",
+			"Do I still have my head",
+			"Do you feel a chill in your bones",
+			"Does anyone else feel a chill in their bones",
+			"These old bones do not move the way that they used to"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

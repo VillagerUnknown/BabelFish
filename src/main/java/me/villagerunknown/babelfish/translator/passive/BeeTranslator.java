@@ -10,10 +10,14 @@ import java.util.List;
 public class BeeTranslator extends AnimalTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
+			"Buzz",
+			"Buzz buzz",
 			"Flower",
 			"Flowers",
 			"Happy Queen, happy Bee",
 			"Honey",
+			"Honey, honey, honey",
+			"Honey, honey, honey. Must be runny",
 			"I like the white flowers",
 			"I like the yellow flowers",
 			"I like the red flowers",

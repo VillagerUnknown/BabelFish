@@ -8,7 +8,13 @@ import java.util.List;
 
 public class FoxTranslator extends AnimalTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Berries, please",
+			"Can I have berries",
+			"Can I have berries, please",
+			"Give me berries, now",
+			"Give me berries, please"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

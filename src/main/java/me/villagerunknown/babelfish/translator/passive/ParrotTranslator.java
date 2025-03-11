@@ -10,6 +10,9 @@ public class ParrotTranslator extends AnimalTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"Pesky bird",
+			"Polly wants a biscuit",
+			"Polly wants a cookie",
+			"Polly wants a cracker",
 			"Pretty bird",
 			"I am a pesky bird",
 			"I am a pretty bird"

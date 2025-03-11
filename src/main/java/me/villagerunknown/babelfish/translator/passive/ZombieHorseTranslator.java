@@ -8,8 +8,20 @@ import java.util.List;
 
 public class ZombieHorseTranslator extends HorseTranslator {
 	
-	// # Villagers should talk a lot about the village and be paranoid (like conspiracy theorists)
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Brains",
+			"Braaaiiins",
+			"Braaaiins",
+			"Braaiins",
+			"Braains",
+			"I am so hungry",
+			"I can smell flesh",
+			"I must feed",
+			"I smell flesh",
+			"I smell fresh meat",
+			"So hungry",
+			"The hunger"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

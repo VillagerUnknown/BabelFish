@@ -8,7 +8,15 @@ import java.util.List;
 
 public class DrownedTranslator extends ZombieTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Blub",
+			"Blub, blub",
+			"Blub, blub, blub",
+			"Have you seen my rubber ducky",
+			"Quack",
+			"Where is my rubber ducky",
+			"Why am I wet"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

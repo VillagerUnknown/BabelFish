@@ -13,7 +13,11 @@ public class LlamaTranslator extends AnimalTranslator {
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"Are you going to chew that",
 			"Are you finished chewing that",
-			"Can I chew that"
+			"Boo-ya",
+			"Boom, baby",
+			"Can I chew that",
+			"No touchy",
+			"Uh-huh, uh-huh, uh-huh"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of(

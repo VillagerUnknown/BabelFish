@@ -9,7 +9,13 @@ import java.util.List;
 
 public class ShulkerTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Bleh",
+			"Cloned sheep? Hah",
+			"Do not even think about putting your things in me",
+			"Peekaboo",
+			"You can kill me but more will live on"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

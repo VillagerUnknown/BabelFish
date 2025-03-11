@@ -8,7 +8,14 @@ import java.util.List;
 
 public class CaveSpiderTranslator extends SpiderTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Can you imagine being friends with a pig",
+			"I just really want to bite someone",
+			"I was friends with a pig once",
+			"Get out of my cave",
+			"What are you doing in my cave",
+			"Why are you in my cave"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

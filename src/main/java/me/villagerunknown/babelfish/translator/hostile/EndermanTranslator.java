@@ -14,8 +14,10 @@ public class EndermanTranslator extends HostileTranslator {
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"Are you using that block",
 			"Can I have that block",
+			"Did that make you jump",
 			"Do not look at me",
 			"I cannot make up my mind",
+			"Polo",
 			"This dimension is boring",
 			"This dimension is fun",
 			"This dimension is my favorite",

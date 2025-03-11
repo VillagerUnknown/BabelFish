@@ -1,5 +1,6 @@
 package me.villagerunknown.babelfish.translator.passive;
 
+import me.villagerunknown.platform.util.ListUtil;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
@@ -34,6 +35,14 @@ public class CowTranslator extends AnimalTranslator {
 				BIOMES,
 				STRUCTURES,
 				TRANSLATION_COMMON
+		);
+	}
+	
+	public CowTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
+		super(
+				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
+				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),
+				ListUtil.buildStringList( common, TRANSLATION_COMMON )
 		);
 	}
 	

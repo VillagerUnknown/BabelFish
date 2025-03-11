@@ -5,6 +5,7 @@ import me.villagerunknown.platform.util.ListUtil;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.Structure;
+import net.minecraft.world.gen.structure.StructureKeys;
 
 import java.util.List;
 
@@ -22,13 +23,15 @@ public class DragonTranslator extends HostileTranslator {
 			"I have watched for eons... now it is my time",
 			"This realm is mine to rule",
 			"This realm is mine",
-			"Tread carefully, fore I can end you in an instant",
+			"Tread carefully, for I can end you in an instant",
 			"You are but a fleeting moment"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
-	public static List<RegistryKey<Structure>> STRUCTURES = List.of();
+	public static List<RegistryKey<Structure>> STRUCTURES = List.of(
+			StructureKeys.END_CITY
+	);
 	
 	public DragonTranslator() {
 		super(

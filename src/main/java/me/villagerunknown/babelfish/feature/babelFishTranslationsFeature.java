@@ -30,14 +30,14 @@ public class babelFishTranslationsFeature {
 		put( "chicken", new ChickenTranslator() );
 		put( "cod", new FishTranslator() );
 		put( "cow", new CowTranslator() );
-		put( "dolphin", new FishTranslator() );
+		put( "dolphin", new DolphinTranslator() );
 		put( "donkey", new DonkeyTranslator() );
 		put( "fox", new FoxTranslator() );
 		put( "frog", new FrogTranslator() );
 		put( "glow_squid", new SquidTranslator() );
 		put( "goat", new GoatTranslator() );
 		put( "horse", new HorseTranslator() );
-		put( "iron_golem", new AmbientTranslator() ); // Purposefully set to Ambient
+		put( "iron_golem", new IronGolemTranslator() );
 		put( "llama", new LlamaTranslator() );
 		put( "mooshroom", new MooshroomTranslator() );
 		put( "mule", new MuleTranslator() );
@@ -55,9 +55,10 @@ public class babelFishTranslationsFeature {
 		put( "squid", new SquidTranslator() );
 		put( "strider", new StriderTranslator() );
 		put( "salmon", new FishTranslator() );
-		put( "tadpole", new FishTranslator() );
+		put( "tadpole", new TadpoleTranslator() );
 		put( "trader_llama", new TraderLlamaTranslator() );
 		put( "tropical_fish", new FishTranslator() );
+		put( "turtle", new TurtleTranslator() );
 		put( "villager", new VillagerTranslator() );
 		put( "wandering_trader", new WanderingTraderTranslator() );
 		put( "wolf", new WolfTranslator() );

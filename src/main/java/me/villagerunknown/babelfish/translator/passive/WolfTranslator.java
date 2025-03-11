@@ -12,6 +12,7 @@ public class WolfTranslator extends AnimalTranslator {
 	// # Wolves should talk about the pack and family
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"Woof",
+			"Can I be a mongoose dog",
 			"I smell something",
 			"I would do anything for the pack",
 			"The pack is everything",

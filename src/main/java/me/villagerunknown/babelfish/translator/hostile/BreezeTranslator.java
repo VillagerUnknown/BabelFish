@@ -9,7 +9,14 @@ import java.util.List;
 
 public class BreezeTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Did anyone else feel a slight breeze",
+			"Did that make you jump",
+			"Like the wind",
+			"Poof",
+			"That breeze on the back of your neck? That is me",
+			"What is that? It's the wind"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

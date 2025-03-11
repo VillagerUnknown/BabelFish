@@ -9,7 +9,13 @@ import java.util.List;
 
 public class ArmadilloTranslator extends AnimalTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Do not hit me",
+			"Do not hit me, please",
+			"I am not a ball",
+			"No, I would not make a good ball",
+			"Please, do not hit me"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

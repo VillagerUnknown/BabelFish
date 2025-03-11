@@ -11,7 +11,15 @@ import java.util.List;
 
 public class SnowGolemTranslator extends PassiveTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Derpa derpa",
+			"Derpa derpa derpa",
+			"Do you see a magic hat",
+			"Let us have a snowball fight",
+			"No, I am not Frosty the Snowman",
+			"Snowball fight",
+			"Who wants to have a snowball fight"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of(
 			BiomeKeys.SNOWY_PLAINS,
@@ -21,7 +29,8 @@ public class SnowGolemTranslator extends PassiveTranslator {
 	);
 	
 	public static List<RegistryKey<Structure>> STRUCTURES = List.of(
-			StructureKeys.IGLOO
+			StructureKeys.IGLOO,
+			StructureKeys.VILLAGE_SNOWY
 	);
 	
 	public SnowGolemTranslator() {

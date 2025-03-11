@@ -21,6 +21,8 @@ public class ChickenTranslator extends AnimalTranslator {
 			"Hang on, I think I have to lay an egg",
 			"Hang on, I think I have to lay another egg",
 			"Have you heard about the chicken that crossed the road",
+			"It is quite simple really",
+			"Poultryman? Never heard of them",
 			"Ultra-mega-chicken? Shh. No, that's just a legend",
 			"What is a road",
 			"What is a road and why would I want to cross one"

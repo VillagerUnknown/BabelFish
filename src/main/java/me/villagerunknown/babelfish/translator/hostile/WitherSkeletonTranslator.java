@@ -10,7 +10,13 @@ import java.util.List;
 
 public class WitherSkeletonTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"I cannot get away from myself",
+			"I will do as you say, master",
+			"I wither away and die",
+			"We all wither away and die",
+			"Yes, master"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
@@ -21,14 +27,6 @@ public class WitherSkeletonTranslator extends HostileTranslator {
 				BIOMES,
 				STRUCTURES,
 				TRANSLATION_COMMON
-		);
-	}
-	
-	public WitherSkeletonTranslator(List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
-		super(
-				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
-				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),
-				ListUtil.buildStringList( common, TRANSLATION_COMMON )
 		);
 	}
 	

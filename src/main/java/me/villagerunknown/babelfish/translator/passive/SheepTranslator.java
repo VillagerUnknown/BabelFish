@@ -14,10 +14,16 @@ public class SheepTranslator extends AnimalTranslator {
 			"Bahhh",
 			"Can I have some wheat",
 			"Do you have any wheat",
+			"Fluffy",
 			"I am cold",
 			"I am warm",
+			"I feel so fluffy",
 			"Is it me, or is it cold",
-			"Is it me, or is it warm"
+			"Is it me, or is it warm",
+			"Oh, fluffy",
+			"Oh, soft",
+			"Ooh, fluffy",
+			"Ooh, soft"
 	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of(

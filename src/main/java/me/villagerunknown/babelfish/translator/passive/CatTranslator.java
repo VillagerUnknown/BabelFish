@@ -1,5 +1,6 @@
 package me.villagerunknown.babelfish.translator.passive;
 
+import me.villagerunknown.platform.util.ListUtil;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
@@ -21,6 +22,8 @@ public class CatTranslator extends AnimalTranslator {
 			"Food please",
 			"Food now",
 			"Food now please",
+			"I am Catman",
+			"I am a cat, man",
 			"I will come to you... eventually",
 			"I will come to you... maybe",
 			"Is that a fish"
@@ -37,6 +40,14 @@ public class CatTranslator extends AnimalTranslator {
 				BIOMES,
 				STRUCTURES,
 				TRANSLATION_COMMON
+		);
+	}
+	
+	public CatTranslator( List<RegistryKey<Biome>> biomes, List<RegistryKey<Structure>> structures, List<String> common ) {
+		super(
+				ListUtil.buildRegistryKeyBiomeList( biomes, BIOMES ),
+				ListUtil.buildRegistryKeyStructureList( structures, STRUCTURES ),
+				ListUtil.buildStringList( common, TRANSLATION_COMMON )
 		);
 	}
 	

@@ -9,7 +9,14 @@ import java.util.List;
 
 public class EndermiteTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Do not make me go back there",
+			"Down here",
+			"Excuse me",
+			"Hey, down here",
+			"How did I get here",
+			"Where did I come from"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

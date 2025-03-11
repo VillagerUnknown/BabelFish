@@ -17,6 +17,7 @@ public class SkeletonTranslator extends HostileTranslator {
 			"Arrr",
 			"Aye",
 			"Did anyone else feel a chill in their bones",
+			"Does anyone else feel a chill in their bones",
 			"I be a-bone to get ye, whether ye like it or not",
 			"Ye better watch yer back",
 			"Ye can run, but ye can't hide",

@@ -8,7 +8,13 @@ import java.util.List;
 
 public class PolarBearTranslator extends AnimalTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Did you know that my hair was not always white",
+			"Does anyone have any sunscreen",
+			"I could go for a non-copyrighted soft drink right now",
+			"No, I have never met Santa",
+			"No, I have never seen Santa"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

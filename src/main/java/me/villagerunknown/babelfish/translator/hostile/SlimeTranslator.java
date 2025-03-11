@@ -9,7 +9,18 @@ import java.util.List;
 
 public class SlimeTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	// # Meatwad from Aqua Teen Hunger Force
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Can I go swimming",
+			"Do what now",
+			"Here, take the slime bridge",
+			"I am 30 or 40 years old and I do not need this",
+			"I am like Tremors. If you cut me up, I will multiply",
+			"Squish",
+			"Take one down, pass it around",
+			"You best check yourself, 'fore you wreck yourself",
+			"You can kill me but more will live on"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

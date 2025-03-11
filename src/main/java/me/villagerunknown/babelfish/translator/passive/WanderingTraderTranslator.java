@@ -11,7 +11,7 @@ import java.util.List;
 
 public class WanderingTraderTranslator extends AmbientTranslator {
 	
-	// # Traders should act like a marketplace salesperson at a market for tourists and Billy Mays in Minecraft
+	// # Traders should act like a marketplace salesperson at a market for tourists, Billy Mays, and GoodTimesWithScar
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"Act fast, before it's all gone",
 			"Act fast, or you'll miss out on these amazing offers",
@@ -34,10 +34,10 @@ public class WanderingTraderTranslator extends AmbientTranslator {
 			"Come over and see what I've got for you",
 			"Come see the finest trades available",
 			"Discounts for bulk purchases",
-			"Do not be the last to get one",
-			"Do not miss out",
-			"Do not miss out! Act now, and I'll throw in a bonus trade you won't want to pass up",
-			"Do not miss out! Only a few left",
+			"Don't be the last to get one",
+			"Don't miss out",
+			"Don't miss out! Act now, and I'll throw in a bonus trade you won't want to pass up",
+			"Don't miss out! Only a few left",
 			"Everything is on sale",
 			"Everything must go",
 			"Everything on sale",
@@ -50,6 +50,8 @@ public class WanderingTraderTranslator extends AmbientTranslator {
 			"Get your items fast",
 			"Get your items fast before they're gone",
 			"Get your items here",
+			"Give me your boots",
+			"Give me your pants",
 			"Grab it before it's gone",
 			"Half off today",
 			"Half off today! Only for you",
@@ -65,6 +67,8 @@ public class WanderingTraderTranslator extends AmbientTranslator {
 			"I have the blocks you need, the items you want, and I'm here to make sure you get them",
 			"I trade items for emeralds here",
 			"I promise, this will make your day",
+			"I want your boots",
+			"I want your pants",
 			"If you trade now, I'll throw in a bonus item to really kickstart your adventure",
 			"Is anyone interested in trading",
 			"Items for trade",

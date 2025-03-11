@@ -9,7 +9,13 @@ import java.util.List;
 
 public class SilverfishTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Hiss",
+			"I am not a fish",
+			"I was in the block the whole time",
+			"Peekaboo",
+			"Surprise"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

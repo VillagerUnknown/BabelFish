@@ -12,6 +12,9 @@ public class CreeperTranslator extends HostileTranslator {
 	
 	public static List<String> TRANSLATION_COMMON = List.of(
 			"A ninja never makes a sound",
+			"Boom",
+			"Call me a boomer",
+			"Do not call me a boomer",
 			"Dun. Dun. Dun nu. Dun. Dun. Dun nu",
 			"I am being sneaky",
 			"I am like a ninja",
@@ -19,8 +22,12 @@ public class CreeperTranslator extends HostileTranslator {
 			"I am one with the leaves",
 			"I am one with the moss",
 			"I am one with the shadows",
+			"KaBoom",
+			"KaBoom. Da ba dee da ba di",
 			"Sh",
 			"Shh",
+			"Ssss",
+			"SSSsss",
 			"Silent as the night",
 			"The explosion will be the last you hear",
 			"They will never see me coming"

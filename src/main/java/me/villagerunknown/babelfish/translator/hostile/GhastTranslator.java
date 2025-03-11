@@ -9,7 +9,13 @@ import java.util.List;
 
 public class GhastTranslator extends HostileTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"A-choo",
+			"I love you",
+			"Meow",
+			"Purr",
+			"Thank you"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

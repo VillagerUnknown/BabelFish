@@ -8,7 +8,16 @@ import java.util.List;
 
 public class ElderGuardianTranslator extends GuardianTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"Has anyone seen my glasses",
+			"Help! I have fallen and cannot get up",
+			"I did not do it, I am old",
+			"Leave this old man alone",
+			"Leave me alone, I am old",
+			"Let me get my glasses",
+			"Let me just get my glasses",
+			"You cannot escape"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	

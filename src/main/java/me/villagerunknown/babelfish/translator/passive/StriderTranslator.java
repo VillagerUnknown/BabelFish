@@ -8,7 +8,16 @@ import java.util.List;
 
 public class StriderTranslator extends AnimalTranslator {
 	
-	public static List<String> TRANSLATION_COMMON = List.of();
+	public static List<String> TRANSLATION_COMMON = List.of(
+			"That is hot",
+			"That feels nice",
+			"That is warm",
+			"Oh, hot",
+			"Oh, that is hot",
+			"Oh, that feels nice",
+			"Wow, that is hot",
+			"Wow, that feels nice"
+	);
 	
 	public static List<RegistryKey<Biome>> BIOMES = List.of();
 	
