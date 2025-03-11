@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.Component;
 import net.minecraft.component.ComponentMap;
@@ -34,6 +35,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.village.TradeOffer;
+import net.minecraft.village.TradedItem;
+import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
@@ -69,6 +73,31 @@ public class babelFishMobFeature {
 		registerFishItem();
 		registerSpawnEggItem();
 		registerBucketItem();
+		registerFishermanTrades();
+	}
+	
+	private static void registerFishermanTrades() {
+		// Level 1
+		TradeOfferHelper.registerVillagerOffers( VillagerProfession.FISHERMAN, 1, f -> {
+			f.add( (entity, random) -> new TradeOffer(
+					new TradedItem( Items.EMERALD, 3 ),
+					new ItemStack( BABEL_FISH_BUCKET_ITEM, 1 ),
+					12,
+					2,
+					0.05F
+			));
+		} );
+		
+		// Level 3
+		TradeOfferHelper.registerVillagerOffers( VillagerProfession.FISHERMAN, 3, f -> {
+			f.add( (entity, random) -> new TradeOffer(
+					new TradedItem( BABEL_FISH_ITEM, 6 ),
+					new ItemStack( Items.EMERALD, 1 ),
+					6,
+					20,
+					0.05F
+			));
+		} );
 	}
 	
 	private static void registerSpawnEggItem() {
