@@ -18,6 +18,7 @@ import net.minecraft.component.Component;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffect;
@@ -26,6 +27,8 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -33,7 +36,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
@@ -45,11 +47,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static me.villagerunknown.babelfish.Babelfish.MOD_ID;
+
 public class babelFishMobFeature {
 	
 	public static String BABEL_FISH_STRING = "babel_fish";
-	public static String BABEL_FISH_ID_STRING = Babelfish.MOD_ID + ":" + BABEL_FISH_STRING;
-	public static Identifier BABEL_FISH_ID = RegistryUtil.identifier( "babel_fish", Babelfish.MOD_ID );
+	public static String BABEL_FISH_ID_STRING = MOD_ID + ":" + BABEL_FISH_STRING;
+	public static Identifier BABEL_FISH_ID = RegistryUtil.identifier( MOD_ID, "babel_fish" );
 	
 	public static EntityType<BabelFishEntity> BABEL_FISH_ENTITY_TYPE = null;
 	public static Item BABEL_FISH_SPAWN_EGG_ITEM = null;
@@ -101,19 +105,18 @@ public class babelFishMobFeature {
 	}
 	
 	private static void registerSpawnEggItem() {
-		BABEL_FISH_SPAWN_EGG_ITEM = new SpawnEggItem( BABEL_FISH_ENTITY_TYPE, 0xfff000, 0x999000, new Item.Settings());
+		BABEL_FISH_SPAWN_EGG_ITEM = new SpawnEggItem( BABEL_FISH_ENTITY_TYPE, 0xfff000, 0x999000, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID,BABEL_FISH_STRING + "_spawn_egg"))));
 		
-		RegistryUtil.registerItem(BABEL_FISH_STRING + "_spawn_egg", BABEL_FISH_SPAWN_EGG_ITEM, Babelfish.MOD_ID );
+		RegistryUtil.registerItem(BABEL_FISH_STRING + "_spawn_egg", BABEL_FISH_SPAWN_EGG_ITEM, MOD_ID );
 		RegistryUtil.addItemToGroup( ItemGroups.SPAWN_EGGS, BABEL_FISH_SPAWN_EGG_ITEM );
 	}
 	
 	private static void registerFishItem() {
-		BABEL_FISH_FOOD_COMPONENT = new FoodComponent.Builder().nutrition(2).saturationModifier(0.2f)
-				.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 100), 1.0f).build();
+		BABEL_FISH_FOOD_COMPONENT = new FoodComponent.Builder().nutrition(2).saturationModifier(0.2f).build();
 		
-		BABEL_FISH_ITEM = new Item( new Item.Settings().food( BABEL_FISH_FOOD_COMPONENT ) );
+		BABEL_FISH_ITEM = new Item( new Item.Settings().food( BABEL_FISH_FOOD_COMPONENT, ConsumableComponents.PUFFERFISH ).registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID,BABEL_FISH_STRING))) );
 		
-		RegistryUtil.registerItem( BABEL_FISH_STRING, BABEL_FISH_ITEM, Babelfish.MOD_ID );
+		RegistryUtil.registerItem( BABEL_FISH_STRING, BABEL_FISH_ITEM, MOD_ID );
 		RegistryUtil.addItemToGroup( ItemGroups.FOOD_AND_DRINK, BABEL_FISH_ITEM );
 		
 		registerCookedFishItem();
@@ -122,16 +125,16 @@ public class babelFishMobFeature {
 	private static void registerCookedFishItem() {
 		COOKED_BABEL_FISH_FOOD_COMPONENT = new FoodComponent.Builder().nutrition(6).saturationModifier(0.6f).build();
 		
-		COOKED_BABEL_FISH_ITEM = new Item( new Item.Settings().food( COOKED_BABEL_FISH_FOOD_COMPONENT ) );
+		COOKED_BABEL_FISH_ITEM = new Item( new Item.Settings().food( COOKED_BABEL_FISH_FOOD_COMPONENT ).registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID,"cooked_" + BABEL_FISH_STRING))) );
 		
-		RegistryUtil.registerItem( "cooked_" + BABEL_FISH_STRING, COOKED_BABEL_FISH_ITEM, Babelfish.MOD_ID );
+		RegistryUtil.registerItem( "cooked_" + BABEL_FISH_STRING, COOKED_BABEL_FISH_ITEM, MOD_ID );
 		RegistryUtil.addItemToGroup( ItemGroups.FOOD_AND_DRINK, COOKED_BABEL_FISH_ITEM );
 	}
 	
 	private static void registerBucketItem() {
-		BABEL_FISH_BUCKET_ITEM = new BabelFishBucketItem( new Item.Settings().maxCount(1) );
+		BABEL_FISH_BUCKET_ITEM = new BabelFishBucketItem( new Item.Settings().maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID,BABEL_FISH_STRING + "_bucket"))) );
 		
-		RegistryUtil.registerItem( BABEL_FISH_STRING + "_bucket", BABEL_FISH_BUCKET_ITEM, Babelfish.MOD_ID );
+		RegistryUtil.registerItem( BABEL_FISH_STRING + "_bucket", BABEL_FISH_BUCKET_ITEM, MOD_ID );
 		RegistryUtil.addItemToGroup( ItemGroups.FOOD_AND_DRINK, BABEL_FISH_BUCKET_ITEM );
 	}
 	
@@ -139,9 +142,9 @@ public class babelFishMobFeature {
 		BABEL_FISH_ENTITY_TYPE = EntityType.Builder.create(BabelFishEntity::new, SpawnGroup.WATER_CREATURE)
 					.dimensions(0.5f, 0.5f)
 					.allowSpawningInside(Blocks.WATER)
-					.build(BABEL_FISH_ID_STRING);
+					.build(RegistryKey.of( RegistryKeys.ENTITY_TYPE, BABEL_FISH_ID ));
 		
-		RegistryUtil.registerEntity( BABEL_FISH_STRING, BABEL_FISH_ENTITY_TYPE, Babelfish.MOD_ID );
+		RegistryUtil.registerEntity( BABEL_FISH_STRING, BABEL_FISH_ENTITY_TYPE, MOD_ID );
 		FabricDefaultAttributeRegistry.register( BABEL_FISH_ENTITY_TYPE, BabelFishEntity.createBabelFishAttributes() );
 		
 		registerEntitySpawns();
