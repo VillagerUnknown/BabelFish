@@ -12,6 +12,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,15 +48,13 @@ public class BabelFishStatusEffect extends StatusEffect {
 		return true;
 	}
 	
-	@Override
-	public void applyInstantEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
-		super.applyInstantEffect(source, attacker, target, amplifier, proximity);
+	public void applyInstantEffect(ServerWorld world, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
+		super.applyInstantEffect(world, source, attacker, target, amplifier, proximity);
 	}
 	
-	@Override
-	public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+	public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
 		if( entity.getWorld().isClient() ) {
-			return super.applyUpdateEffect(entity, amplifier);
+			return super.applyUpdateEffect(world, entity, amplifier);
 		}
 		
 		if( canSendMessage( entity.getWorld() ) && MathUtil.hasChance( Babelfish.CONFIG.chanceForBabelFishChatter ) ) {
@@ -64,7 +63,7 @@ public class BabelFishStatusEffect extends StatusEffect {
 			} // if
 		} // if
 		
-		return super.applyUpdateEffect(entity, amplifier);
+		return super.applyUpdateEffect(world, entity, amplifier);
 	}
 	
 	public void onRemovedFromEntity(LivingEntity entity) {

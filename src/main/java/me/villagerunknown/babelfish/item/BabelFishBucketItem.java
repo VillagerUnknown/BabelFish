@@ -9,14 +9,14 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
+import net.minecraft.item.consume.UseAction;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.RaycastContext;
@@ -59,10 +59,10 @@ public class BabelFishBucketItem extends EntityBucketItem {
 	}
 
 	public SoundEvent getDrinkSound() {
-		return SoundEvents.ENTITY_GENERIC_DRINK;
+		return SoundEvents.ENTITY_GENERIC_DRINK.value();
 	}
 	
-	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+	public ActionResult use(World world, PlayerEntity user, Hand hand) {
 		BlockHitResult blockHitResult = raycast(world, user, RaycastContext.FluidHandling.ANY);
 
 		if( blockHitResult.getType() == HitResult.Type.MISS ) {

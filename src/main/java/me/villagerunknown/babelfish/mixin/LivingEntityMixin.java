@@ -72,7 +72,7 @@ public class LivingEntityMixin {
 	@Inject(method = "playSound", at = @At("HEAD"), cancellable = true)
 	private void playSound(SoundEvent sound, CallbackInfo ci) {
 		if( null != sound ) {
-			String path = sound.getId().getPath();
+			String path = sound.id().getPath();
 			String[] parts = path.split("\\.");
 			switch( parts[ parts.length - 1 ] ) {
 				case "loop":
@@ -261,14 +261,6 @@ public class LivingEntityMixin {
 //				default:
 //					Babelfish.LOGGER.info("Untranslated Sound: " + sound.getId().getPath());
 			} // switch
-		} // if
-	}
-	
-	@Inject(method = "onStatusEffectRemoved", at = @At("HEAD"), cancellable = true)
-	private void onStatusEffectRemoved(StatusEffectInstance effectInstance, CallbackInfo ci) {
-		if( effectInstance.getEffectType() == babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) {
-			BabelFishStatusEffect effect = ((BabelFishStatusEffect)effectInstance.getEffectType().value());
-			effect.onRemovedFromEntity( (LivingEntity) (Object) this );
 		} // if
 	}
 
