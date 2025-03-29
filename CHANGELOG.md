@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2+1.21.4]
+
+### Added
+
+- Added translations for Creaking.
+
 ## [1.0.1+1.21.4]
 
 ### Changed
