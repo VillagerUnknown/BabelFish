@@ -69,7 +69,7 @@ public class babelFishTranslationsFeature {
 		put( "bogged", new BoggedTranslator() );
 		put( "breeze", new BreezeTranslator() );
 		put( "cave_spider", new CaveSpiderTranslator() );
-//		put( "creaking", new CreakingTranslator() );
+		put( "creaking", new CreakingTranslator() );
 		put( "creeper", new CreeperTranslator() );
 		put( "dragon", new DragonTranslator() );
 		put( "drowned", new DrownedTranslator() );
