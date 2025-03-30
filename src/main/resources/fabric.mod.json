@@ -6,7 +6,7 @@
   "description": "Adds a bright yellow fish that, when consumed from a bucket, provides translations and world hints to the player.",
   "authors": ["VillagerUnknown"],
   "contact": {
-    "homepage":"https://modrinth.com/mod/villagerunknown-babelfish",
+    "homepage":"https://github.com/VillagerUnknown",
     "sources":"https://github.com/VillagerUnknown/BabelFish",
     "issues":"https://github.com/VillagerUnknown/BabelFish/issues"
   },
