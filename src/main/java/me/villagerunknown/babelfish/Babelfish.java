@@ -36,6 +36,9 @@ public class Babelfish implements ModInitializer {
 		featureManager.addFeature( "babelFishMob", babelFishMobFeature::execute );
 		featureManager.addFeature( "babelFishStatusEffect", babelFishStatusEffectFeature::execute );
 		featureManager.addFeature( "babelFishTranslations", babelFishTranslationsFeature::execute );
+		
+		// # Load Features
+		featureManager.loadFeatures();
 	}
 	
 }
