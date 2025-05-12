@@ -22,9 +22,9 @@ public class Babelfish implements ModInitializer {
 		Platform.init_mod( MOD );
 		
 		// # Activate Features
-		featureManager.addFeature( "babelFishMob", babelFishMobFeature::execute );
-		featureManager.addFeature( "babelFishStatusEffect", babelFishStatusEffectFeature::execute );
-		featureManager.addFeature( "babelFishTranslations", babelFishTranslationsFeature::execute );
+		featureManager.addFeature( "babel-fish-mob", babelFishMobFeature::execute );
+		featureManager.addFeature( "babel-fish-status-effect", babelFishStatusEffectFeature::execute );
+		featureManager.addFeature( "babel-fish-translations", babelFishTranslationsFeature::execute );
 		
 		// # Load Features
 		featureManager.loadFeatures();
