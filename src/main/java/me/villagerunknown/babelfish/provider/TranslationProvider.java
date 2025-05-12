@@ -42,10 +42,8 @@ public class TranslationProvider {
 					} // if
 				}
 			} // if, else
-		} else {
-			if( !translator.TRANSLATION_COMMON.isEmpty() ) {
-				message = translator.TRANSLATION_COMMON.get(rand.nextInt(translator.TRANSLATION_COMMON.size()));
-			} // if
+		} else if( !Babelfish.CONFIG.translationHintsOnly && !translator.TRANSLATION_COMMON.isEmpty() ) {
+			message = translator.TRANSLATION_COMMON.get(rand.nextInt(translator.TRANSLATION_COMMON.size()));
 		} // if
 		
 		return message;

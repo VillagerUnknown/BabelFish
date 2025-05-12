@@ -8,10 +8,13 @@ import me.villagerunknown.babelfish.translator.passive.*;
 import me.villagerunknown.platform.util.MathUtil;
 import me.villagerunknown.platform.util.MessageUtil;
 import me.villagerunknown.platform.util.StringUtil;
+import me.villagerunknown.platform.util.WorldUtil;
 import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.*;
 
@@ -111,10 +114,10 @@ public class babelFishTranslationsFeature {
 	private static final Random rand = new Random();
 	
 	public static void execute() {
-//		registerEvents();
+//		registerTrackingEvents();
 	}
 	
-	public static void registerEvents() {
+	public static void registerTrackingEvents() {
 		EntityTrackingEvents.START_TRACKING.register((entity, serverPlayerEntity) -> {
 			if( !( entity instanceof LivingEntity ) ) {
 				return;
@@ -141,119 +144,123 @@ public class babelFishTranslationsFeature {
 		
 		String message = "";
 		
-		switch( context ) {
-			case "talk":
-			case "talkTo":
-			case "look":
-			case "interact":
-				message = formTranslationTalk( type, player );
-				break;
-			case "trackStart":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRACK_START );
-				break;
-			case "trackStop":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRACK_STOP );
-				break;
-			case "passenger":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_PASSENGER );
-				break;
-			case "sleep":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_SLEEP );
-				break;
-			case "wake":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_WAKE );
-				break;
-			case "trade":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRADE_BROWSE );
-				break;
-			case "sale":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRADE );
-				break;
-			case "work":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_WORK );
-				break;
-			case "growth":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_GROWTH );
-				break;
-			case "convertBad":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_CONVERT_BAD );
-				break;
-			case "hungry":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_HUNGRY );
-				break;
-			case "eat":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_EAT );
-				break;
-			case "push":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_PUSH );
-				break;
-			case "admire":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_ADMIRE );
-				break;
-			case "jealous":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_JEALOUS );
-				break;
-			case "panic":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_PANIC );
-				break;
-			case "celebrate":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_CELEBRATE );
-				break;
-			case "saddle":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_SADDLE );
-				break;
-			case "sheared":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_SHEARED );
-				break;
-			case "angry":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_ANGRY );
-				break;
-			case "attack":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_ATTACK );
-				break;
-			case "attackDoor":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DOOR_ATTACK );
-				break;
-			case "breakDoor":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DOOR_BREAK );
-				break;
-			case "destroy":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DESTROY );
-				break;
-			case "knockback":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_KNOCKBACK );
-				break;
-			case "damage":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DAMAGE );
-				break;
-			case "retreat":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_RETREAT );
-				break;
-			case "death":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DEATH );
-				break;
-			case "kill":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_KILL );
-				break;
-			case "teleport":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TELEPORT );
-				break;
-			case "greeting":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_GREETING );
-				break;
-			case "farewell":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_FAREWELL );
-				break;
-			case "yes":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_YES );
-				break;
-			case "no":
-				message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_NO );
-				break;
-			default:
-				Babelfish.LOGGER.info( "Unrecognized context when attempting to send translation: " + context );
-				break;
-		} // switch
+		if( Babelfish.CONFIG.translationHintsOnly ) {
+			message = formTranslationTalk( type, player );
+		} else {
+			switch( context ) {
+				case "talk":
+				case "talkTo":
+				case "look":
+				case "interact":
+					message = formTranslationTalk( type, player );
+					break;
+				case "trackStart":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRACK_START );
+					break;
+				case "trackStop":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRACK_STOP );
+					break;
+				case "passenger":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_PASSENGER );
+					break;
+				case "sleep":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_SLEEP );
+					break;
+				case "wake":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_WAKE );
+					break;
+				case "trade":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRADE_BROWSE );
+					break;
+				case "sale":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TRADE );
+					break;
+				case "work":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_WORK );
+					break;
+				case "growth":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_GROWTH );
+					break;
+				case "convertBad":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_CONVERT_BAD );
+					break;
+				case "hungry":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_HUNGRY );
+					break;
+				case "eat":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_EAT );
+					break;
+				case "push":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_PUSH );
+					break;
+				case "admire":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_ADMIRE );
+					break;
+				case "jealous":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_JEALOUS );
+					break;
+				case "panic":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_PANIC );
+					break;
+				case "celebrate":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_CELEBRATE );
+					break;
+				case "saddle":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_SADDLE );
+					break;
+				case "sheared":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_SHEARED );
+					break;
+				case "angry":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_ANGRY );
+					break;
+				case "attack":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_ATTACK );
+					break;
+				case "attackDoor":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DOOR_ATTACK );
+					break;
+				case "breakDoor":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DOOR_BREAK );
+					break;
+				case "destroy":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DESTROY );
+					break;
+				case "knockback":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_KNOCKBACK );
+					break;
+				case "damage":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DAMAGE );
+					break;
+				case "retreat":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_RETREAT );
+					break;
+				case "death":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_DEATH );
+					break;
+				case "kill":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_KILL );
+					break;
+				case "teleport":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_TELEPORT );
+					break;
+				case "greeting":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_GREETING );
+					break;
+				case "farewell":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_FAREWELL );
+					break;
+				case "yes":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_YES );
+					break;
+				case "no":
+					message = GlobalTranslator.getTranslation( GlobalTranslator.TRANSLATION_NO );
+					break;
+				default:
+					Babelfish.LOGGER.info( "Unrecognized context when attempting to send translation: " + context );
+					break;
+			} // switch
+		} // if, else
 		
 		if( !message.isEmpty() ) {
 			sendMessage(player, entity, message);
@@ -341,6 +348,39 @@ public class babelFishTranslationsFeature {
 		timeMessageSent = player.getWorld().getTime();
 		
 		MessageUtil.sendChatMessage( player, message );
+	}
+	
+	public static void handleSoundEvent(CallbackInfo ci, String context, Entity entity, boolean forced ) {
+		if( !forced && !MathUtil.hasChance( Babelfish.CONFIG.chanceForTranslationFromSound) ) {
+			ci.cancel();
+		} // if
+		
+		if( !entity.isAlive() || entity.isPlayer() || entity.getWorld().isClient() ) {
+			ci.cancel();
+		} // if
+		
+		if( null != entity.getServer() ) {
+			List<ServerPlayerEntity> players = WorldUtil.getEntitiesByType(WorldUtil.getServerWorld(entity.getEntityWorld()), entity.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), ServerPlayerEntity.class);
+			
+			if( !players.isEmpty() ) {
+				for( ServerPlayerEntity player : players ) {
+					if( entity.getType() == babelFishMobFeature.BABEL_FISH_ENTITY_TYPE || player.hasStatusEffect(babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY) ) {
+						List<LivingEntity> entities = WorldUtil.getEntitiesByType(player.getServerWorld(), player.getBoundingBox().expand(Babelfish.CONFIG.babelFishTranslationRadius), LivingEntity.class);
+						double chance = 1 - (entities.size() * Babelfish.CONFIG.translationChatMessageEntityReductionFactor);
+						
+						if( chance < Babelfish.CONFIG.translationChatMessageMinimumChance ) {
+							chance = Babelfish.CONFIG.translationChatMessageMinimumChance;
+						} // if
+						
+						chance = chance > 0 ? chance : 0;
+						
+						if( forced || 1 == entities.size() || MathUtil.hasChance((float) chance) ) {
+							babelFishTranslationsFeature.sendTranslation(player, entity, context);
+						} // if
+					} // if
+				} // if
+			} // if
+		} // if
 	}
 	
 }

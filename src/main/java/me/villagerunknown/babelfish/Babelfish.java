@@ -11,31 +11,23 @@ import org.slf4j.Logger;
 
 public class Babelfish implements ModInitializer {
 	
-	public static PlatformMod<BabelfishConfigData> MOD = null;
-	public static String MOD_ID = null;
-	public static Logger LOGGER = null;
-	public static BabelfishConfigData CONFIG = null;
+	public static PlatformMod<BabelfishConfigData> MOD = Platform.register( "babelfish", Babelfish.class, BabelfishConfigData.class );
+	public static String MOD_ID = MOD.getModId();
+	public static Logger LOGGER = MOD.getLogger();
+	public static BabelfishConfigData CONFIG = MOD.getConfig();
 	
 	@Override
 	public void onInitialize() {
-		// # Register Mod w/ Platform
-		MOD = Platform.register( "babelfish", Babelfish.class, BabelfishConfigData.class );
-		
-		MOD_ID = MOD.getModId();
-		LOGGER = MOD.getLogger();
-		CONFIG = MOD.getConfig();
-		
-		// # Initialize Mod
-		init();
-	}
-	
-	private static void init() {
+		// # Initialize Mod with Platform
 		Platform.init_mod( MOD );
 		
 		// # Activate Features
 		featureManager.addFeature( "babelFishMob", babelFishMobFeature::execute );
 		featureManager.addFeature( "babelFishStatusEffect", babelFishStatusEffectFeature::execute );
 		featureManager.addFeature( "babelFishTranslations", babelFishTranslationsFeature::execute );
+		
+		// # Load Features
+		featureManager.loadFeatures();
 	}
 	
 }

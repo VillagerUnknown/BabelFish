@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0+1.21.1]
+
+### Added
+
+- Added `translationHintsOnly` option. This allows the Babel Fish Status Effect to only provide translations with World Hints.
+
+### Changed
+
+- Changed supported Platform version to 1.3.0.
+
 ## [1.0.1]
 
 ### Added

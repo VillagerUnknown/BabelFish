@@ -14,6 +14,7 @@
   "text.autoconfig.villagerunknown-babelfish.option.translationChatMessageDelay": "Translation Chat Message Delay",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForTranslationFromSound": "Chance for Translation from Sound",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForBabelFishChatter": "Chance for Babel Fish Chatter",
+  "text.autoconfig.villagerunknown-babelfish.option.translationHintsOnly": "Translation Hints Only",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForWorldHint": "Chance for World Hint",
   "text.autoconfig.villagerunknown-babelfish.option.chanceForStructureHint": "Chance for Structure Hint",
 
