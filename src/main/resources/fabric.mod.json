@@ -10,7 +10,7 @@
     "sources":"https://github.com/VillagerUnknown/BabelFish",
     "issues":"https://github.com/VillagerUnknown/BabelFish/issues"
   },
-  "license": "CC-BY-4.0",
+  "license": "MIT",
   "icon": "assets/villagerunknown-babelfish/villagerunknown-babel-fish.png",
   "environment": "*",
   "entrypoints": {
