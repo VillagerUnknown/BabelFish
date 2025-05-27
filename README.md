@@ -7,6 +7,7 @@ Adds a bright yellow fish that, when consumed from a bucket, provides translatio
 * Babel Fish Mob
 * Babel Fish Translator Status Effect
 * Translations and World Hints to Biomes & Structures
+* Optionally only show World Hints.
 
 ## Babel Fish Mob
 
@@ -49,6 +50,7 @@ For example:
 * **Translation Chat Message Delay** - Delay in ticks between sending translations
 * **Chance for Translation from Sound** - Chance to provide a translation when a sound plays.
 * **Chance for Babel Fish Chatter** - Chance for random chatter from the Babel Fish allowing the translations
+* **Translation Hints Only** - Only display World Hints. _This disables all other translations._
 * **Chance for World Hint** - Chance to provide a hint to a biome or structure as a translation.
 * **Chance for Structure Hint** - Chance to provide a structure hint instead of a biome hint as the world hint.
 
@@ -57,7 +59,7 @@ For example:
 * Request features and report bugs at https://github.com/VillagerUnknown/BabelFish/issues
 * View the changelog at https://github.com/VillagerUnknown/BabelFish/blob/main/CHANGELOG.md
 
-**Known Issues**
+### Notes
 
 * The Babel Fish Translator status effect can impact performance as it frequently uses code similar to the `/locate` command for world hints. 
 This is controlled by the `worldHintSearchRadius` config value. 
