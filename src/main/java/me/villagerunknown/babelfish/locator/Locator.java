@@ -27,7 +27,7 @@ public class Locator {
 	public static Pair<BlockPos, RegistryEntry<Biome>> locateBiome( PlayerEntity player, RegistryKey<Biome> registryKey ) {
 		ServerWorld serverWorld = WorldUtil.getServerWorld( player.getWorld() );
 		
-		Registry<Biome> registry = serverWorld.getRegistryManager().get(RegistryKeys.BIOME);
+		Registry<Biome> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.BIOME);
 		RegistryEntry<Biome> biome = registry.getEntry( registry.get( registryKey ) );
 		
 		if( biome == player.getWorld().getBiome( player.getBlockPos() ) ) {

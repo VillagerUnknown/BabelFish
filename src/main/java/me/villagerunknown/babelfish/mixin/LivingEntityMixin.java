@@ -27,7 +27,7 @@ public class LivingEntityMixin {
 		if( null != sound ) {
 			Entity entity = (Entity) (Object) this;
 			
-			String path = sound.getId().getPath();
+			String path = sound.id().getPath();
 			String[] parts = path.split("\\.");
 			switch( parts[ parts.length - 1 ] ) {
 				case "loop":
@@ -217,13 +217,13 @@ public class LivingEntityMixin {
 		} // if
 	}
 	
-	@Inject(method = "onStatusEffectRemoved", at = @At("HEAD"))
-	private void onStatusEffectRemoved(StatusEffectInstance effectInstance, CallbackInfo ci) {
-		if( effectInstance.getEffectType() == babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) {
-			BabelFishStatusEffect effect = ((BabelFishStatusEffect)effectInstance.getEffectType().value());
-			effect.onRemovedFromEntity( (LivingEntity) (Object) this );
-		} // if
-	}
+//	@Inject(method = "onStatusEffectRemoved", at = @At("HEAD"))
+//	private void onStatusEffectRemoved(StatusEffectInstance effectInstance, CallbackInfo ci) {
+//		if( effectInstance.getEffectType() == babelFishStatusEffectFeature.BABEL_FISH_EFFECT_REGISTRY ) {
+//			BabelFishStatusEffect effect = ((BabelFishStatusEffect)effectInstance.getEffectType().value());
+//			effect.onRemovedFromEntity( (LivingEntity) (Object) this );
+//		} // if
+//	}
 
 	@Inject(method = "lookAt", at = @At("HEAD"), cancellable = true)
 	private void lookAt(EntityAnchorArgumentType.EntityAnchor anchorPoint, Vec3d target, CallbackInfo ci) {

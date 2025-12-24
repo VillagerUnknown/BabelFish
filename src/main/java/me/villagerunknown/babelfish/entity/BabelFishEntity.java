@@ -20,8 +20,8 @@ public class BabelFishEntity extends FishEntity {
 	
 	public static DefaultAttributeContainer.Builder createBabelFishAttributes() {
 		return MobEntity.createMobAttributes()
-				.add(EntityAttributes.GENERIC_MAX_HEALTH, 3)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5f);
+				.add(EntityAttributes.MAX_HEALTH, 3)
+				.add(EntityAttributes.MOVEMENT_SPEED, 0.5f);
 	}
 	
 	public ItemStack getBucketItem() { return new ItemStack( babelFishMobFeature.BABEL_FISH_BUCKET_ITEM );}
