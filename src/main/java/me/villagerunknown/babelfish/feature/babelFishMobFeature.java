@@ -105,7 +105,7 @@ public class babelFishMobFeature {
 	}
 	
 	private static void registerSpawnEggItem() {
-		BABEL_FISH_SPAWN_EGG_ITEM = new SpawnEggItem( BABEL_FISH_ENTITY_TYPE, 0xfff000, 0x999000, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID,BABEL_FISH_STRING + "_spawn_egg"))));
+		BABEL_FISH_SPAWN_EGG_ITEM = new SpawnEggItem( BABEL_FISH_ENTITY_TYPE, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID,BABEL_FISH_STRING + "_spawn_egg"))));
 		
 		RegistryUtil.registerItem(BABEL_FISH_STRING + "_spawn_egg", BABEL_FISH_SPAWN_EGG_ITEM, MOD_ID );
 		RegistryUtil.addItemToGroup( ItemGroups.SPAWN_EGGS, BABEL_FISH_SPAWN_EGG_ITEM );
